@@ -15,8 +15,10 @@ function main() {
     camera.position.z = 2;
 
     // Scene
-    // const scene = new THREE.scene();
+    const scene = new THREE.Scene();
 
+
+    renderer.render(scene, camera);
 }
 
 main();
