@@ -6,7 +6,7 @@ const renderer = new THREE.WebGLRenderer({ canvas });
 
 // Camera
 const fov = 75;     // fov: degrees, others: radians
-const aspect = 2;   // canvas default
+const aspect = .75;   // canvas default
 const near = 0.1;
 const far = 5;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far); 
@@ -28,9 +28,18 @@ scene.add(cubeMesh);
 
 function render(time) {
     // convert to seconds
-    time += 0.001;    
+    time *= 0.001;    
+
+    // responsive canvas
+    if (resizeRendererToDisplaySize(renderer)) {
+        const canvas = renderer.domElement;
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+    }
     
     // object manipulation
+    cubeMesh.rotation.x = time/3;
+    cubeMesh.rotation.y = time/2;
 
     // render scene
     renderer.render(scene, camera);
@@ -41,5 +50,14 @@ function render(time) {
 // start initial animation
 requestAnimationFrame(render);
 
-
-console.log("Three JS loaded");
+// responsive display size
+function resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+        renderer.setSize(width, height, false);
+    }
+    return needResize;
+}
