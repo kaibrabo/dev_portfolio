@@ -9,21 +9,44 @@ const fov = 75;     // fov: degrees, others: radians
 const aspect = .75;   // canvas default
 const near = 0.1;
 const far = 5;
-const camera = new THREE.PerspectiveCamera(fov, aspect, near, far); 
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 camera.position.z = 2;
 
 // Scene
 const scene = new THREE.Scene();
 
+// Texture: Cube
+const loadManager = new THREE.LoadingManager(); // multiple texture loading
+const loader = new THREE.TextureLoader(loadManager);
+const materials = [
+    new THREE.MeshPhongMaterial({ map: loader.load('assets/img/sq_cut_mug.png') }),
+    new THREE.MeshPhongMaterial({ map: loader.load('assets/img/sq_cut_mug.png') }),
+    new THREE.MeshPhongMaterial({ map: loader.load('assets/img/sq_cut_mug.png') }),
+    new THREE.MeshPhongMaterial({ map: loader.load('assets/img/sq_mug.png') }),
+    new THREE.MeshPhongMaterial({ map: loader.load('assets/img/sq_mug.png') }),
+    new THREE.MeshPhongMaterial({ map: loader.load('assets/img/sq_mug.png') }),
+]
+
 // Cube
 const boxWidth = 1;
 const boxHeight = 1;
 const boxDepth = 1;
 const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
-const cubeMat = new THREE.MeshPhongMaterial({color: 0x44aa88});
-const cubeMesh = new THREE.Mesh(geometry, cubeMat);
-scene.add(cubeMesh); 
+const cubeMesh = new THREE.Mesh(geometry, materials);
+
+// Loading bar for slow connections
+const loadingElem = document.querySelector('#loading');
+const progressBarElem = loadingElem.querySelector('.progressbar');
+loadManager.onLoad = () => {
+    loadingElem.style.display = 'none';
+    scene.add(cubeMesh);
+}
+loadManager.onProgress = (urlOfLastItemLoaded, itemsLoaded, ItemsTotal) => {
+    const progress = itemsLoaded / ItemsTotal;
+    progressBarElem.style.transform = `scaleX(${progress})`;
+};
+
 
 // Light
 {
@@ -37,7 +60,7 @@ scene.add(cubeMesh);
 
 function render(time) {
     // convert to seconds
-    time *= 0.001;    
+    time *= 0.001;
 
     // responsive canvas
     if (resizeRendererToDisplaySize(renderer)) {
@@ -47,8 +70,8 @@ function render(time) {
     }
     
     // object manipulation
-    cubeMesh.rotation.x = time/3;
-    cubeMesh.rotation.y = time/2;
+    // cubeMesh.rotation.x = time/3;
+    cubeMesh.rotation.y = time / 2;
 
     // render scene
     renderer.render(scene, camera);
