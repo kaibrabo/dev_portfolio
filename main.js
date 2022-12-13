@@ -21,9 +21,18 @@ const boxWidth = 1;
 const boxHeight = 1;
 const boxDepth = 1;
 const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
-const cubeMat = new THREE.MeshBasicMaterial({color: 0x44aa88});
+const cubeMat = new THREE.MeshPhongMaterial({color: 0x44aa88});
 const cubeMesh = new THREE.Mesh(geometry, cubeMat);
 scene.add(cubeMesh); 
+
+// Light
+{
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-1, 2, 4);
+    scene.add(light);
+}
 
 
 function render(time) {
@@ -49,6 +58,7 @@ function render(time) {
 }
 // start initial animation
 requestAnimationFrame(render);
+
 
 // responsive display size
 function resizeRendererToDisplaySize(renderer) {
