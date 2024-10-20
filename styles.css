@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    font-family: "Computer Modern Serif", Tahoma, sans-serif;
+    line-height: 2rem;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+
+    .main-container {
+        width: 80%;
+        max-width: 1200px;
+        height: 80%;
+        margin: 90px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .title-section {
+            display: flex;
+            flex-direction: column;
+
+            .full-name {
+                width: 100%;
+                font-size: 1.6rem;
+            }
+
+            .links {
+                display: flex;
+                justify-content: space-between;
+                width: 50%;
+
+                a {
+                    text-decoration: none;
+                    color: black;
+                    padding-right: 10px;
+
+                    &:hover {
+                        color: #0000EE;
+                    }
+                }
+
+
+
+            }
+        }
+
+        .about-me-section,
+        .experience-section,
+        .education-section,
+        .skills-section {
+            margin-top: 50px;
+
+            .title {
+                font-size: 1.7rem;
+                font-weight: 400;
+            }
+        }
+
+        .experience-section {
+
+            .job {
+                margin: 30px auto 10px;
+                font-size: 1.1rem;
+
+                .info,
+                .position {
+                    font-style: italic;
+                    color: #777777;
+                }
+
+                .points {
+                    padding: 20px;
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        .education-section {
+
+            .container {
+                margin: 25px auto;
+                font-size: 1.1rem;
+
+                .degree,
+                .dates {
+                    font-style: italic;
+                    color: #777777;
+                }
+
+            }
+        }
+
+        .skills-section {
+            padding-bottom: 50px;
+
+            .points {
+                padding: 20px;
+                margin-left: 20px;
+            }
+        }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: white;
+
+        a {
+            color: white !important;
+
+            &:hover {
+                color: #3f3fdf !important;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 600px) {
+    * {
+        font-size: medium;
+    }
+
+    body {
+
+        h2 {
+            font-size: 24px !important;
+        }
+
+        h3 {
+            font-size: 20px !important;
+        }
+
+        .main-container {
+            margin: 50px auto;
+        }
+
+        .about-me-section {
+            text-align: justify;
+        }
+
+        .experience-section {
+
+            .job {
+                margin: 10px auto 5px !important;
+            }
+        }
+
+        .links {
+            flex-direction: column;
+        }
+
+        .education-section {
+
+            .container {
+                margin: 10px auto 0 !important;
+            }
+        }
+
+        .about-me-section,
+        .experience-section,
+        .education-section,
+        .skills-section {
+            margin-top: 20px !important;
+        }
+    }
+}
