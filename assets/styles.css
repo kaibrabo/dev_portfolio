@@ -122,6 +122,26 @@ body {
                 color: #3f3fdf !important;
             }
         }
+
+        .experience-section {
+
+            .job {
+
+                .position, .info {
+                    color: #999999 !important;
+                }
+            }
+        }
+
+        .education-section {
+
+            .container {
+
+                .degree, .dates {
+                    color: #999999 !important;
+                }
+            }
+        }
     }
 
 }
