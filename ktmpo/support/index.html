@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KTMPO Support</title>
+  <meta name="description" content="Support and help for KTMPO, a timezone-anchored alarm and world-clock app." />
+  <style>
+    :root {
+      --ground: #f4f6f9;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #59637a;
+      --accent: #2f6bed;
+      --accent-soft: #eaf1fe;
+      --hairline: #e3e7ee;
+      --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 8px 30px rgba(15, 23, 42, .06);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(47, 107, 237, .10), transparent 70%);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ground: #0a0f1c;
+        --surface: #111a2e;
+        --ink: #e7ecf5;
+        --muted: #9aa7bd;
+        --accent: #6ea0ff;
+        --accent-soft: #16233d;
+        --hairline: rgba(255, 255, 255, .08);
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+        --glow: radial-gradient(60% 80% at 50% 0%, rgba(110, 160, 255, .14), transparent 70%);
+      }
+    }
+    :root[data-theme="dark"] {
+      --ground: #0a0f1c;
+      --surface: #111a2e;
+      --ink: #e7ecf5;
+      --muted: #9aa7bd;
+      --accent: #6ea0ff;
+      --accent-soft: #16233d;
+      --hairline: rgba(255, 255, 255, .08);
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(110, 160, 255, .14), transparent 70%);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    header {
+      background-image: var(--glow);
+      padding: 4.5rem 0 2.5rem;
+      text-align: center;
+    }
+    .brand {
+      font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin: 0 0 .35rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 2.7rem); line-height: 1.08;
+      margin: 0 0 1rem; letter-spacing: -.02em; text-wrap: balance; font-weight: 800;
+    }
+    .lede { color: var(--muted); margin: 0; }
+
+    .contact {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.6rem;
+      margin: 2.5rem 0 3rem;
+      text-align: center;
+    }
+    .contact h2 {
+      margin: 0 0 .5rem; font-size: .8rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+    }
+    .contact a { font-size: 1.25rem; font-weight: 700; }
+
+    main { color: var(--ink); }
+    section + section { margin-top: 2rem; }
+    h2.section { font-size: 1.3rem; letter-spacing: -.01em; margin: 0 0 .75rem; font-weight: 700; }
+    h3 { font-size: 1.02rem; margin: 1.3rem 0 .25rem; font-weight: 700; }
+    p { margin: .5rem 0; color: color-mix(in srgb, var(--ink) 88%, var(--muted)); }
+    a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    .rule { height: 1px; background: var(--hairline); border: 0; margin: 3rem 0 0; }
+    footer { padding-top: 1.6rem; color: var(--muted); font-size: .95rem; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      a { transition: color .15s ease; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="brand">KTMPO</p>
+      <h1>Support</h1>
+      <p class="lede">Alarms anchored to the time zone you meant.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="contact">
+      <h2>Contact</h2>
+      <a href="mailto:kaibrabo@gmail.com">kaibrabo@gmail.com</a>
+      <p>Questions, bugs, or feedback — email anytime and we'll get back to you.</p>
+    </div>
+
+    <main>
+      <section>
+        <h2 class="section">Frequently asked</h2>
+
+        <h3>How do timezone-anchored alarms work?</h3>
+        <p>Each alarm is pinned to a place and its time zone. An alarm set for 9:00 AM in San Francisco rings at San Francisco's 9:00 AM no matter where you are — so your schedule stays correct when you travel.</p>
+
+        <h3>My alarm didn't ring loudly.</h3>
+        <p>On iPhones running iOS 26 or later, KTMPO uses the system's alarm feature to ring through silent mode and Focus with a full-screen Stop and Snooze — allow the "schedule alarms" prompt on first launch. On earlier iOS versions the alarm arrives as a notification, so make sure notifications are enabled for KTMPO in Settings, and that the alarm and its location are turned on.</p>
+
+        <h3>Why does KTMPO ask for my location?</h3>
+        <p>Only to detect your current time zone and show your current city. Your location stays on your device (and your paired Apple Watch) and is never sent to us or anyone else. You can decline it — alarms still work; the app just won't auto-detect your current zone.</p>
+
+        <h3>How do I add a city?</h3>
+        <p>Tap the plus button on the home screen and search by city name or airport code (for example, JFK or LHR). Tap a city's card to add alarms to it.</p>
+
+        <h3>Widgets or the Apple Watch aren't updating.</h3>
+        <p>Open the KTMPO app once to refresh them. Widget and watch data is sent from your iPhone, so they update while the app has run recently. For a stuck widget, remove and re-add it.</p>
+
+        <h3>Do you collect any data?</h3>
+        <p>No. There are no accounts, no ads, and no tracking. See the <a href="https://kainoabrabo.com/moondial/privacy/">privacy policy</a> for details.</p>
+      </section>
+
+      <hr class="rule" />
+      <footer>
+        <p>KTMPO &middot; <a href="https://kainoabrabo.com/moondial/privacy/">Privacy Policy</a></p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
