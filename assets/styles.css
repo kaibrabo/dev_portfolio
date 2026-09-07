@@ -166,16 +166,16 @@ body {
 }
 
 @media print {
-    /* Print/PDF: clean ink-on-white, compact to one page, hide the game. */
-    @page { margin: 0.5in; }
+    /* Print/PDF: a clean, recruiter-ready one-page layout. Screen styles above
+       are unaffected; everything here only applies to print / Save-as-PDF. */
+    @page { size: letter; margin: 0.55in 0.62in; }
 
-    body { background: #fff !important; color: #000 !important; }
-    body a { color: #000 !important; text-decoration: none !important; }
+    body { background: #fff !important; color: #111 !important; }
+    body a { color: #111 !important; text-decoration: none !important; }
     #breakout-game { display: none !important; }
 
-    * { font-size: 10px !important; line-height: 1.32 !important; }
-    .full-name { font-size: 17px !important; }
-    .title { font-size: 12.5px !important; }
+    /* Base rhythm */
+    * { font-size: 10.4px !important; line-height: 1.34 !important; }
 
     .main-container {
         width: 100% !important;
@@ -183,24 +183,75 @@ body {
         height: auto !important;
         margin: 0 !important;
         padding: 0 !important;
+        display: block !important;
     }
 
-    .about-me-section,
+    /* Header: name + a single muted contact line with dot separators */
+    .title-section { margin-bottom: 4px !important; }
+    .full-name {
+        font-size: 22px !important;
+        font-weight: 700 !important;
+        letter-spacing: .3px;
+        margin: 0 0 2px !important;
+    }
+    .title-section .links {
+        display: block !important;
+        width: 100% !important;
+    }
+    .title-section .links a {
+        display: inline !important;
+        padding: 0 !important;
+        color: #555 !important;
+    }
+    .title-section .links a:not(:last-child)::after {
+        content: "   \00b7   ";
+        color: #aaa;
+    }
+
+    /* Section headers with a hairline rule for scannability */
+    .title {
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase;
+        letter-spacing: 1.3px;
+        border-bottom: 1px solid #bbb;
+        padding-bottom: 2px !important;
+        margin: 0 0 6px !important;
+    }
+    .about-me-section { margin-top: 9px !important; }
     .experience-section,
     .projects-section,
     .education-section,
-    .skills-section { margin-top: 12px !important; }
+    .skills-section { margin-top: 13px !important; }
 
+    .about-me-section p + p { margin-top: 4px !important; }
+
+    /* Entries: bold title, italic subtitle, dates pulled to the right */
     .experience-section .job,
-    .projects-section .job { margin: 8px auto 5px !important; }
-    .education-section .container { margin: 8px auto !important; }
+    .projects-section .job { margin: 0 0 9px !important; position: relative; }
+    .education-section .container { margin: 0 0 8px !important; position: relative; }
 
-    .points { padding: 4px 4px 4px 18px !important; margin-left: 6px !important; }
+    .employer, .school { font-weight: 700 !important; font-size: 11px !important; }
+    .position, .degree { font-style: italic !important; color: #333 !important; }
+    .info, .dates { color: #555 !important; }
+
+    .experience-section .job > .info,
+    .education-section .container > .dates {
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        margin: 0 !important;
+        font-style: normal !important;
+        color: #555 !important;
+    }
+
+    /* Bullets: tight and evenly spaced */
+    .points { padding: 3px 0 0 15px !important; margin: 2px 0 0 0 !important; }
+    .point { margin: 0 0 1px !important; }
 
     .job, .container { page-break-inside: avoid; break-inside: avoid; }
 
-    .position, .info, .degree, .dates { color: #333 !important; }
-    .appstore-badge { height: 18px !important; }
+    .appstore-badge { height: 15px !important; margin-top: 1px; }
 }
 
 @media (max-width: 600px) {
