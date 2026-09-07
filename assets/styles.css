@@ -122,10 +122,13 @@ body {
 }
 
 .appstore-badge {
-    height: 26px;
+    height: 18px;
     width: auto;
     vertical-align: middle;
     display: inline-block;
+    margin-left: 6px;
+    position: relative;
+    top: -1px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -251,7 +254,7 @@ body {
 
     .job, .container { page-break-inside: avoid; break-inside: avoid; }
 
-    .appstore-badge { height: 15px !important; margin-top: 1px; }
+    .appstore-badge { height: 13px !important; margin-left: 5px; top: -1px; }
 }
 
 @media (max-width: 600px) {
