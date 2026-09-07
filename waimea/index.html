@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waimea</title>
+  <meta name="description" content="Waimea is a timezone-anchored alarm and world-clock app. Alarms ring at the right local time wherever you are. Private, on-device, no accounts." />
+  <meta name="theme-color" content="#0a0f1c" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)" />
+  <link rel="canonical" href="https://kainoabrabo.com/waimea/" />
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Waimea" />
+  <meta property="og:description" content="Alarms anchored to the time zone you meant. A private, on-device world-clock and alarm app." />
+  <meta property="og:url" content="https://kainoabrabo.com/waimea/" />
+  <meta name="twitter:card" content="summary" />
+  <!-- Inline SVG favicon (compass), no external asset -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f6bed'/%3E%3Cpath d='M16 6a10 10 0 100 20 10 10 0 000-20zm0 2.2a7.8 7.8 0 110 15.6 7.8 7.8 0 010-15.6zM20.5 11.5l-2.1 5.3-5.3 2.1 2.1-5.3z' fill='white'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --ground: #f4f6f9;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #59637a;
+      --accent: #2f6bed;
+      --accent-soft: #eaf1fe;
+      --hairline: #e3e7ee;
+      --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 8px 30px rgba(15, 23, 42, .06);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(47, 107, 237, .10), transparent 70%);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ground: #0a0f1c;
+        --surface: #111a2e;
+        --ink: #e7ecf5;
+        --muted: #9aa7bd;
+        --accent: #6ea0ff;
+        --accent-soft: #16233d;
+        --hairline: rgba(255, 255, 255, .08);
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+        --glow: radial-gradient(60% 80% at 50% 0%, rgba(110, 160, 255, .14), transparent 70%);
+      }
+    }
+    :root[data-theme="dark"] {
+      --ground: #0a0f1c;
+      --surface: #111a2e;
+      --ink: #e7ecf5;
+      --muted: #9aa7bd;
+      --accent: #6ea0ff;
+      --accent-soft: #16233d;
+      --hairline: rgba(255, 255, 255, .08);
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(110, 160, 255, .14), transparent 70%);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    header {
+      background-image: var(--glow);
+      padding: 3.25rem 0 1.5rem;
+      text-align: center;
+    }
+    .mark {
+      width: 52px; height: 52px; margin: 0 auto 1.25rem;
+      display: grid; place-items: center;
+      border-radius: 15px;
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--shadow);
+    }
+    .mark svg { display: block; }
+    .brand {
+      font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin: 0 0 .35rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 2.7rem); line-height: 1.08;
+      margin: 0 0 .6rem; letter-spacing: -.02em; text-wrap: balance; font-weight: 800;
+    }
+    .lede {
+      margin: 0 auto; max-width: 34rem; color: var(--muted); font-size: 1.08rem;
+    }
+
+    .summary {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.6rem;
+      margin: 2.5rem 0 2.5rem;
+    }
+    .summary h2 {
+      margin: 0 0 .9rem; font-size: .8rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+    }
+    .summary ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .7rem; }
+    .summary li { position: relative; padding-left: 1.9rem; }
+    .summary li::before {
+      content: ""; position: absolute; left: 0; top: .58em;
+      width: 12px; height: 12px; border-radius: 4px;
+      background: var(--accent-soft);
+      border: 2px solid var(--accent);
+    }
+
+    .links {
+      display: grid; gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 34rem) { .links { grid-template-columns: 1fr; } }
+    .card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.4rem 1.5rem;
+      text-decoration: none; color: inherit; font-weight: inherit;
+    }
+    .card:hover { border-color: var(--accent); text-decoration: none; }
+    .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .card .eyebrow {
+      display: block; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin-bottom: .35rem;
+    }
+    .card .title { font-size: 1.2rem; font-weight: 700; letter-spacing: -.01em; }
+    .card .desc { margin: .35rem 0 0; color: var(--muted); font-size: .96rem; }
+    .card .go { margin-top: .8rem; color: var(--accent); font-weight: 600; font-size: .95rem; }
+
+    a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    .rule { height: 1px; background: var(--hairline); border: 0; margin: 3rem 0 0; }
+    footer { padding-top: 1.6rem; color: var(--muted); font-size: .95rem; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      a, .card { transition: color .15s ease, border-color .15s ease; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="mark" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="12" stroke="var(--accent)" stroke-width="2.2" />
+          <path d="M16 9v7l4.5 2.6" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <p class="brand">Waimea</p>
+      <h1>Alarms anchored to the time zone you meant.</h1>
+      <p class="lede">A world clock and alarm app that rings at the right local time, wherever you are.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="summary">
+      <h2>What it does</h2>
+      <ul>
+        <li>Set an alarm for a place and it rings at that place&rsquo;s local time, even when you travel.</li>
+        <li>See world clocks for the cities you care about at a glance.</li>
+        <li>Home Screen widgets and an Apple Watch app show your next alarm with a live countdown.</li>
+        <li>Private by design: no accounts, no ads, no tracking. Your data stays on your device.</li>
+      </ul>
+    </div>
+
+    <nav class="links" aria-label="Waimea pages">
+      <a class="card" href="privacy/">
+        <span class="eyebrow">Legal</span>
+        <span class="title">Privacy Policy</span>
+        <p class="desc">What the app does and does not do with your information. (Spoiler: nothing leaves your device.)</p>
+        <span class="go">Read the policy &rarr;</span>
+      </a>
+      <a class="card" href="support/">
+        <span class="eyebrow">Help</span>
+        <span class="title">Support</span>
+        <p class="desc">Frequently asked questions and how to reach us with bugs or feedback.</p>
+        <span class="go">Get support &rarr;</span>
+      </a>
+    </nav>
+
+    <hr class="rule" />
+    <footer>
+      <p>Waimea &middot; Questions? <a href="mailto:brabo.kainoa@gmail.com">brabo.kainoa@gmail.com</a></p>
+    </footer>
+  </div>
+</body>
+</html>
