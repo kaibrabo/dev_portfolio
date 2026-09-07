@@ -55,6 +55,7 @@ body {
 
         .about-me-section,
         .experience-section,
+        .projects-section,
         .education-section,
         .skills-section {
             margin-top: 50px;
@@ -65,7 +66,8 @@ body {
             }
         }
 
-        .experience-section {
+        .experience-section,
+        .projects-section {
 
             .job {
                 margin: 30px auto 10px;
@@ -123,7 +125,8 @@ body {
             }
         }
 
-        .experience-section {
+        .experience-section,
+        .projects-section {
 
             .job {
 
