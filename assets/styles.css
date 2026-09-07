@@ -112,6 +112,13 @@ body {
     }
 }
 
+.appstore-badge {
+    height: 26px;
+    width: auto;
+    vertical-align: middle;
+    display: inline-block;
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: black;
@@ -147,6 +154,44 @@ body {
         }
     }
 
+}
+
+@media print {
+    /* Print/PDF: clean ink-on-white, compact to one page, hide the game. */
+    @page { margin: 0.5in; }
+
+    body { background: #fff !important; color: #000 !important; }
+    body a { color: #000 !important; text-decoration: none !important; }
+    #breakout-game { display: none !important; }
+
+    * { font-size: 10px !important; line-height: 1.32 !important; }
+    .full-name { font-size: 17px !important; }
+    .title { font-size: 12.5px !important; }
+
+    .main-container {
+        width: 100% !important;
+        max-width: none !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .about-me-section,
+    .experience-section,
+    .projects-section,
+    .education-section,
+    .skills-section { margin-top: 12px !important; }
+
+    .experience-section .job,
+    .projects-section .job { margin: 8px auto 5px !important; }
+    .education-section .container { margin: 8px auto !important; }
+
+    .points { padding: 4px 4px 4px 18px !important; margin-left: 6px !important; }
+
+    .job, .container { page-break-inside: avoid; break-inside: avoid; }
+
+    .position, .info, .degree, .dates { color: #333 !important; }
+    .appstore-badge { height: 18px !important; }
 }
 
 @media (max-width: 600px) {
