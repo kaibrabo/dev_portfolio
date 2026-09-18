@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waimea Changelog</title>
+  <meta name="description" content="What changed in each release of Waimea, the timezone-anchored alarm and world-clock app." />
+  <meta name="theme-color" content="#0a0f1c" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)" />
+  <link rel="canonical" href="https://kainoabrabo.com/waimea/changelog/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Waimea Changelog" />
+  <meta property="og:description" content="What changed in each release of Waimea." />
+  <meta property="og:url" content="https://kainoabrabo.com/waimea/changelog/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f6bed'/%3E%3Cpath d='M16 6a10 10 0 100 20 10 10 0 000-20zm0 2.2a7.8 7.8 0 110 15.6 7.8 7.8 0 010-15.6zM20.5 11.5l-2.1 5.3-5.3 2.1 2.1-5.3z' fill='white'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --ground: #f4f6f9;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #59637a;
+      --accent: #2f6bed;
+      --accent-soft: #eaf1fe;
+      --hairline: #e3e7ee;
+      --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 8px 30px rgba(15, 23, 42, .06);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(47, 107, 237, .10), transparent 70%);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ground: #0a0f1c;
+        --surface: #111a2e;
+        --ink: #e7ecf5;
+        --muted: #9aa7bd;
+        --accent: #6ea0ff;
+        --accent-soft: #16233d;
+        --hairline: rgba(255, 255, 255, .08);
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+        --glow: radial-gradient(60% 80% at 50% 0%, rgba(110, 160, 255, .14), transparent 70%);
+      }
+    }
+    :root[data-theme="dark"] {
+      --ground: #0a0f1c;
+      --surface: #111a2e;
+      --ink: #e7ecf5;
+      --muted: #9aa7bd;
+      --accent: #6ea0ff;
+      --accent-soft: #16233d;
+      --hairline: rgba(255, 255, 255, .08);
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(110, 160, 255, .14), transparent 70%);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    header {
+      background-image: var(--glow);
+      padding: 3.25rem 0 1.5rem;
+      text-align: center;
+    }
+    .mark {
+      width: 52px; height: 52px; margin: 0 auto 1.25rem;
+      display: grid; place-items: center;
+      border-radius: 15px;
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--shadow);
+    }
+    .mark svg { display: block; }
+    .brand {
+      font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin: 0 0 .35rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 2.7rem); line-height: 1.08;
+      margin: 0 0 .6rem; letter-spacing: -.02em; text-wrap: balance; font-weight: 800;
+    }
+    .lede { margin: 0 auto; max-width: 34rem; color: var(--muted); font-size: 1.08rem; }
+
+    .release {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.6rem;
+      margin: 0 0 1.25rem;
+    }
+    .release:first-of-type { margin-top: 2.5rem; }
+    .release-head {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem;
+      margin-bottom: .2rem;
+    }
+    .release h2 {
+      margin: 0; font-size: 1.35rem; font-weight: 800; letter-spacing: -.01em;
+    }
+    .tag {
+      font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700;
+      padding: .18rem .5rem; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent);
+      border: 1px solid currentColor;
+    }
+    .date { margin: 0 0 1rem; color: var(--muted); font-size: .92rem; }
+    .release h3 {
+      margin: 1.2rem 0 .6rem; font-size: .78rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+    }
+    .release h3:first-of-type { margin-top: .4rem; }
+    .release ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+    .release li { position: relative; padding-left: 1.6rem; }
+    .release li::before {
+      content: ""; position: absolute; left: 0; top: .62em;
+      width: 9px; height: 9px; border-radius: 3px;
+      background: var(--accent-soft);
+      border: 2px solid var(--accent);
+    }
+
+    a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    .back { display: inline-block; margin-top: 2rem; }
+    .rule { height: 1px; background: var(--hairline); border: 0; margin: 3rem 0 0; }
+    footer { padding-top: 1.6rem; color: var(--muted); font-size: .95rem; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      a { transition: color .15s ease; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="mark" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="11" stroke="#2f6bed" stroke-width="2" />
+          <path d="M21.5 10.5l-3 7.2-7.2 3 3-7.2z" fill="#2f6bed" />
+        </svg>
+      </div>
+      <p class="brand">Waimea</p>
+      <h1>Changelog</h1>
+      <p class="lede">What changed in each release.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <article class="release">
+      <div class="release-head">
+        <h2>1.0.1</h2>
+        <span class="tag">In review</span>
+      </div>
+      <p class="date">Submitted 18 September 2026</p>
+
+      <h3>Fixed</h3>
+      <ul>
+        <li>On/off switches for saved locations and alarms did not respond. The change was saved but never appeared, so the switch looked stuck.</li>
+        <li>Repeating alarms could stop after ringing once. Only the next occurrence was scheduled, and iOS will not wake a closed app to schedule the one after it.</li>
+        <li>The app now asks for alarm permission on first launch. Previously it only asked if you tapped a banner, so dismissing that banner left alarms unable to ring.</li>
+        <li>Light bars along the top and bottom of every screen.</li>
+        <li>Your home location could not be deleted.</li>
+      </ul>
+
+      <h3>Changed</h3>
+      <ul>
+        <li>Your current city is shown automatically, named after the nearest major city. Standing in San Rafael now reads as San Francisco rather than Los Angeles.</li>
+        <li>New installs start empty, instead of with a sample city and four alarms to delete.</li>
+        <li>Sheets can be dismissed by tapping outside them, and dim correctly in dark mode.</li>
+      </ul>
+
+      <h3>Added</h3>
+      <ul>
+        <li>Report a Bug in Settings, which attaches diagnostics to an email so problems can be traced.</li>
+        <li>The version number at the bottom of Settings.</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <div class="release-head">
+        <h2>1.0.0</h2>
+        <span class="tag">First release</span>
+      </div>
+      <p class="date">September 2026</p>
+
+      <h3>Added</h3>
+      <ul>
+        <li>Alarms anchored to a time zone, so an alarm set for 7:00 AM in Tokyo rings at 7:00 AM in Tokyo no matter where you are.</li>
+        <li>World clocks for saved cities, searchable by city name or airport code.</li>
+        <li>Real system alarms on iOS 26 and later, which ring through silent mode and Focus.</li>
+        <li>Home Screen widgets in three sizes, and an Apple Watch app with a complication.</li>
+        <li>Twelve languages, 12 and 24-hour time, light and dark themes.</li>
+        <li>Everything on device. No accounts, no servers, no tracking.</li>
+      </ul>
+    </article>
+
+    <a class="back" href="/waimea/">&larr; Back to Waimea</a>
+
+    <hr class="rule" />
+    <footer>
+      <p>Waimea &middot; <a href="/waimea/privacy/">Privacy Policy</a> &middot; <a href="/waimea/support/">Support</a></p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -116,7 +116,7 @@
 
     .links {
       display: grid; gap: 1rem;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
     }
     @media (max-width: 34rem) { .links { grid-template-columns: 1fr; } }
     .card {
@@ -188,6 +188,12 @@
         <span class="title">Support</span>
         <p class="desc">Frequently asked questions and how to reach us with bugs or feedback.</p>
         <span class="go">Get support &rarr;</span>
+      </a>
+      <a class="card" href="changelog/">
+        <span class="eyebrow">Releases</span>
+        <span class="title">Changelog</span>
+        <p class="desc">What changed in each version, and what is on the way.</p>
+        <span class="go">See what&rsquo;s new &rarr;</span>
       </a>
     </nav>
 
