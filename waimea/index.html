@@ -123,6 +123,18 @@
       grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
     }
     @media (max-width: 34rem) { .links { grid-template-columns: 1fr; } }
+    /* The guide is what a new user needs first, and as a fourth card it was
+       orphaned on a line of its own. Full width, laid out along the row. */
+    .card.wide {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .card.wide .text { flex: 1 1 18rem; }
+    .card.wide .desc { margin-top: .2rem; }
+    .card.wide .go { margin-top: 0; white-space: nowrap; }
     .card {
       display: block;
       background: var(--surface);
@@ -181,10 +193,12 @@
     </div>
 
     <nav class="links" aria-label="Waimea pages">
-      <a class="card" href="guide/">
-        <span class="eyebrow">Guide</span>
-        <span class="title">How to use Waimea</span>
-        <p class="desc">A short walkthrough: adding cities, alarms that belong to a place, and alarms that follow the sun.</p>
+      <a class="card wide" href="guide/">
+        <span class="text">
+          <span class="eyebrow">Guide</span>
+          <span class="title">How to use Waimea</span>
+          <p class="desc">A short walkthrough: adding cities, alarms that belong to a place, and alarms that follow the sun.</p>
+        </span>
         <span class="go">See the walkthrough &rarr;</span>
       </a>
       <a class="card" href="privacy/">
