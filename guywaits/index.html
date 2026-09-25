@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Queue Duty</title>
+<meta name="description" content="I stand in line for the things that sell out. Watches, sneakers, exclusive drops. I fly myself out." />
+<link rel="canonical" href="https://kainoabrabo.com/guywaits/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Queue Duty" />
+<meta property="og:description" content="I stand in line for the things that sell out. Watches, sneakers, exclusive drops. I fly myself out." />
+<meta property="og:url" content="https://kainoabrabo.com/guywaits/" />
+<meta name="twitter:card" content="summary" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+<style>
+  :root {
+    --ground: #efedeb;
+    --surface: #ffffff;
+    --band: #2b1d20;
+    --band-ink: #f0e6e4;
+    --ink: #1c1517;
+    --body: #33282b;
+    --muted: #6f6266;
+    --faint: #8d8185;
+    --accent: #7d1f2e;
+    --accent-ink: #7d1f2e;
+    --brass: #8a6b23;
+    --rule: #dcd6d4;
+    --rule-soft: #e7e2e0;
+    --tag: #f3eeec;
+    --ok: #2f6b4f;
+    --warn: #8a5a12;
+    --stop: #8c2b22;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #141011;
+      --surface: #1d1718;
+      --band: #0e0a0b;
+      --band-ink: #ece0de;
+      --ink: #f1e9e8;
+      --body: #ddd0d0;
+      --muted: #a29397;
+      --faint: #877a7e;
+      --accent: #e5939f;
+      --accent-ink: #e5939f;
+      --brass: #d3ab5c;
+      --rule: #322829;
+      --rule-soft: #272021;
+      --tag: #272021;
+      --ok: #7cc39c;
+      --warn: #d9a84f;
+      --stop: #e58b80;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #141011;
+    --surface: #1d1718;
+    --band: #0e0a0b;
+    --band-ink: #ece0de;
+    --ink: #f1e9e8;
+    --body: #ddd0d0;
+    --muted: #a29397;
+    --faint: #877a7e;
+    --accent: #e5939f;
+    --accent-ink: #e5939f;
+    --brass: #d3ab5c;
+    --rule: #322829;
+    --rule-soft: #272021;
+    --tag: #272021;
+    --ok: #7cc39c;
+    --warn: #d9a84f;
+    --stop: #e58b80;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--body);
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 17.5px;
+    line-height: 1.68;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- masthead band, the Blogger header ---------- */
+  .band {
+    background: var(--band);
+    color: var(--band-ink);
+    border-bottom: 3px solid var(--accent);
+  }
+  .band-inner {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding-block: 2.4rem 2rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .blogtitle {
+    font-family: "Zilla Slab", Rockwell, Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(2.3rem, 8vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: -.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .blogdesc {
+    margin: .7rem 0 0;
+    font-size: 1.06rem;
+    color: color-mix(in srgb, var(--band-ink) 76%, transparent);
+    max-width: 34rem;
+  }
+  .band-meta {
+    margin: 1.1rem 0 0;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--brass);
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem 1.1rem;
+  }
+
+  /* ---------- two column blog shell ---------- */
+  .shell {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding-block: 2.2rem 4rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 16.5rem;
+    gap: 2.6rem;
+    align-items: start;
+  }
+  @media (max-width: 54rem) {
+    .shell { grid-template-columns: minmax(0, 1fr); gap: 2.2rem; }
+  }
+
+  /* ---------- posts ---------- */
+  .datehead {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--faint);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: .4rem;
+    margin: 0 0 1.3rem;
+  }
+  .post + .datehead { margin-top: 2.9rem; }
+  .post { margin: 0 0 2.6rem; }
+  .post h2 {
+    font-family: "Zilla Slab", Rockwell, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.5rem, 4vw, 1.92rem);
+    line-height: 1.16;
+    letter-spacing: -.012em;
+    color: var(--ink);
+    margin: 0 0 .55rem;
+    text-wrap: balance;
+  }
+  .post h3 {
+    font-family: "Zilla Slab", Rockwell, Georgia, serif;
+    font-weight: 600;
+    font-size: 1.12rem;
+    color: var(--ink);
+    margin: 1.5rem 0 .3rem;
+  }
+  .post p { margin: .75rem 0; max-width: 34em; }
+  .post strong { color: var(--ink); font-weight: 500; }
+  a { color: var(--accent-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .postfoot {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .71rem;
+    color: var(--faint);
+    border-top: 1px dotted var(--rule);
+    padding-top: .55rem;
+    margin-top: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem .9rem;
+  }
+  .postfoot .lab { color: var(--accent-ink); }
+
+  /* ---------- the lead-time table, the real information ---------- */
+  .tablewrap { overflow-x: auto; margin: 1.1rem 0 .4rem; }
+  table.lead {
+    width: 100%;
+    min-width: 30rem;
+    border-collapse: collapse;
+    font-size: .93rem;
+  }
+  table.lead th, table.lead td {
+    text-align: left;
+    padding: .62rem .7rem;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+  }
+  table.lead thead th {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    border-bottom: 1px solid var(--rule);
+  }
+  table.lead td:first-child {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .verdict {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .67rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .verdict.ok { color: var(--ok); }
+  .verdict.warn { color: var(--warn); }
+  .verdict.stop { color: var(--stop); }
+
+  /* ---------- the one lifted block: the honest warning ---------- */
+  .notice {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 1.1rem 1.25rem;
+    margin: 1.3rem 0;
+  }
+  .notice p { margin: .4rem 0; max-width: none; }
+  .notice p:first-child { margin-top: 0; }
+  .notice p:last-child { margin-bottom: 0; }
+  .notice .kicker {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    display: block;
+    margin-bottom: .35rem;
+  }
+
+  ol.steps { margin: .9rem 0; padding-left: 1.4rem; max-width: 34em; }
+  ol.steps li { margin: .5rem 0; }
+  ol.steps li::marker { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .85em; color: var(--accent-ink); }
+  ul.plain { margin: .8rem 0; padding-left: 1.2rem; max-width: 34em; }
+  ul.plain li { margin: .38rem 0; }
+
+  /* ---------- booking form ---------- */
+  form { margin: 1.2rem 0 0; }
+  .field { display: flex; flex-direction: column; gap: .3rem; margin-bottom: 1rem; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 34rem) { .row2 { grid-template-columns: 1fr; gap: 0; } }
+  label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .69rem;
+    font-weight: 600;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hint { font-size: .86rem; color: var(--faint); font-family: "Newsreader", Georgia, serif; text-transform: none; letter-spacing: 0; font-weight: 400; }
+  input, select, textarea {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: .55rem .65rem;
+    width: 100%;
+  }
+  textarea { min-height: 5.2rem; resize: vertical; }
+  input::placeholder, textarea::placeholder { color: var(--faint); }
+  .actions { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; margin-top: 1.2rem; }
+  button {
+    font-family: "Zilla Slab", Rockwell, Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: .6rem 1.15rem;
+    border: 1px solid var(--accent);
+  }
+  button.primary { background: var(--accent); color: #fff; }
+  :root[data-theme="dark"] button.primary,
+  :root:not([data-theme="light"]) button.primary { color: #1a1213; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) button.primary { color: #fff; }
+  }
+  button.ghost { background: transparent; color: var(--accent-ink); }
+  .formnote {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .72rem;
+    color: var(--faint);
+    margin: .8rem 0 0;
+  }
+  .said { color: var(--ok); }
+
+  /* ---------- sidebar ---------- */
+  aside { font-size: .95rem; }
+  .widget { margin-bottom: 2.1rem; }
+  .widget h4 {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--faint);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: .38rem;
+    margin: 0 0 .7rem;
+  }
+  .widget p { margin: .5rem 0; }
+  .widget ul { list-style: none; margin: 0; padding: 0; }
+  .widget li {
+    padding: .3rem 0;
+    border-bottom: 1px dotted var(--rule-soft);
+    display: flex;
+    justify-content: space-between;
+    gap: .8rem;
+  }
+  .widget li:last-child { border-bottom: 0; }
+  .widget li .n {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .8rem;
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .tags span {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .7rem;
+    background: var(--tag);
+    color: var(--muted);
+    padding: .16rem .45rem;
+    border-radius: 2px;
+  }
+
+  footer.sitefoot {
+    border-top: 1px solid var(--rule);
+    margin-top: 1rem;
+    padding-block: 1.4rem 0;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .72rem;
+    color: var(--faint);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    a, button { transition: color .12s ease, background-color .12s ease, text-decoration-thickness .12s ease; }
+  }
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="band-inner">
+    <h1 class="blogtitle">Queue Duty</h1>
+    <p class="blogdesc">I stand in line for the things that sell out. Watches, sneakers, exclusive drops. I fly myself out.</p>
+    <p class="band-meta">
+      <span>Payment up front</span>
+      <span>I cover my own travel</span>
+      <span>Purchase never guaranteed</span>
+    </p>
+  </div>
+</div>
+
+<div class="shell">
+
+  <main>
+
+    <p class="datehead">About this service</p>
+
+    <article class="post">
+      <h2>You cannot be in two places at once. I can be in the one that matters.</h2>
+      <p>Some things are only sold to whoever is physically standing there. A boutique allocation, a numbered release, a Saturday morning drop with forty pairs and three hundred people. If you cannot fly to it, you do not get it, and no amount of refreshing a website changes that.</p>
+      <p>That is the whole service. You tell me what is dropping and where. I get myself there, I queue, and I buy it if buying is possible.</p>
+      <p><strong>I pay for my own travel.</strong> Flights, hotel, trains, the taxi at 4am. It is folded into the quote and it is my problem, not a line of receipts I send you afterwards. That is also why I am happy to go somewhere far: the further and stranger the release, the fewer people bothered to show up, and the better your odds get.</p>
+      <div class="postfoot">
+        <span>Posted by Kainoa</span>
+        <span class="lab">Labels: overview, travel</span>
+      </div>
+    </article>
+
+    <p class="datehead">How a booking works</p>
+
+    <article class="post">
+      <h2>Five steps, and one of them is you paying before I book anything</h2>
+      <ol class="steps">
+        <li><strong>You send the details.</strong> The item, the store, the city, the date, the local drop time, and your ceiling on price. The form at the bottom of this page collects exactly what I need.</li>
+        <li><strong>I check the mechanics and quote you.</strong> Every release has its own rules: first come first served, a wristband handed out the night before, a raffle you must register for, an appointment only a existing client can make. I find out which it is before either of us commits, and I tell you honestly what the odds look like.</li>
+        <li><strong>You pay the fee in full.</strong> Up front, before I book a single flight. This is not negotiable and it is not a deposit.</li>
+        <li><strong>I go and I queue.</strong> You get a message when I arrive, my position in the line, and a photo if you want proof I am actually standing in it.</li>
+        <li><strong>If it can be bought, I buy it.</strong> Purchase cost is separate from my fee and settled the moment it goes through. Then I ship it to you, insured, tracked.</li>
+      </ol>
+      <div class="postfoot">
+        <span>Posted by Kainoa</span>
+        <span class="lab">Labels: process</span>
+      </div>
+    </article>
+
+    <p class="datehead">Terms, stated plainly</p>
+
+    <article class="post">
+      <h2>What you are paying for is my time in a line, not the item</h2>
+
+      <div class="notice">
+        <p><span class="kicker">Read this part twice</span><strong>A purchase is never guaranteed.</strong> I am selling you hours of standing in a specific place, and the chance that comes with being there. I am not selling you the watch.</p>
+        <p>Lines run out of stock. Raffles are drawn and lost. Boutiques decline sales at their own discretion, and some will only sell to a client whose name is already in their book. None of that is within my control, and none of it refunds my fee, because the work was done either way.</p>
+      </div>
+
+      <h3>Payment is up front and non-refundable once I travel</h3>
+      <p>The fee is due in full before I book anything. Once flights are paid for, that money is gone whether the drop goes your way or not. If you cancel before I book, I refund you minus anything already spent. If the release itself is cancelled or moved by the seller, I will roll the booking to the new date at no extra fee, travel costs permitting.</p>
+
+      <h3>Enough notice, or I cannot promise anything at all</h3>
+      <p>This is the single biggest factor in whether you get the item. Preparation is most of the job: booking sensible travel, confirming the drop mechanics, registering for whatever needs registering, and getting into the line early enough to matter.</p>
+
+      <div class="tablewrap">
+        <table class="lead">
+          <thead>
+            <tr>
+              <th scope="col">Notice</th>
+              <th scope="col">What I can do with it</th>
+              <th scope="col">Odds</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>14 days +</td>
+              <td>Sensible flights, mechanics confirmed, registrations made, in the line before it forms. This is where I want to be.</td>
+              <td><span class="verdict ok">Best</span></td>
+            </tr>
+            <tr>
+              <td>5 to 13 days</td>
+              <td>Doable, but travel costs more and some raffles or appointment windows have already closed. I will tell you which.</td>
+              <td><span class="verdict warn">Reduced</span></td>
+            </tr>
+            <tr>
+              <td>Under 5 days</td>
+              <td>Case by case. Realistically local or short haul only, and I will not pretend to be confident.</td>
+              <td><span class="verdict stop">No promises</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Things I will not do</h3>
+      <p>Not squeamishness, just the line between a proxy and a problem:</p>
+      <ul class="plain">
+        <li>I will not pose as you where the seller forbids buying on someone else's behalf. Some boutiques do, and getting caught burns the store for both of us permanently.</li>
+        <li>I will not use bot accounts, bought queue positions, or fake identities to enter a raffle.</li>
+        <li>I will not hold a place for a reseller stack, meaning ten bookings for the same drop under different names.</li>
+      </ul>
+      <p>If a release requires the purchaser to be present in person, or to hold an account or history the store can verify, I will tell you at the quote stage rather than take your money and find out on the day.</p>
+
+      <h3>Fees</h3>
+      <p>Quoted per job, because a Tuesday morning two hours away and a Friday night camp-out on another continent are not the same work. The quote is a single figure covering my time, the queue, my travel and shipping, and it does not move after you accept it. The item's own price is separate and settled at purchase.</p>
+      <p>Send the form and you will have a number back within 24 hours.</p>
+
+      <div class="postfoot">
+        <span>Posted by Kainoa</span>
+        <span class="lab">Labels: terms, payment, lead time</span>
+      </div>
+    </article>
+
+    <p class="datehead">Book me</p>
+
+    <article class="post">
+      <h2>Tell me what is dropping</h2>
+      <p>Fill this in and it opens a pre-written email to me. Nothing is sent from this page and nothing is stored on it.</p>
+
+      <form id="booking" novalidate>
+        <div class="row2">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Kainoa Brabo" />
+          </div>
+          <div class="field">
+            <label for="email">Email or phone</label>
+            <input type="text" id="email" name="email" autocomplete="email" placeholder="you@example.com" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="item">The item <span class="hint">Brand, model or reference, size, colourway</span></label>
+          <input type="text" id="item" name="item" placeholder="Tudor Black Bay 58, ref. 79030N" />
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="where">Store and city</label>
+            <input type="text" id="where" name="where" placeholder="Boutique name, Tokyo, Japan" />
+          </div>
+          <div class="field">
+            <label for="ceiling">Your ceiling <span class="hint">Most you will pay for the item</span></label>
+            <input type="text" id="ceiling" name="ceiling" placeholder="e.g. 4,200 USD" />
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="date">Drop date</label>
+            <input type="date" id="date" name="date" />
+          </div>
+          <div class="field">
+            <label for="time">Local drop time <span class="hint">Store's local clock</span></label>
+            <input type="time" id="time" name="time" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="mechanics">How is it being sold, if you know</label>
+          <select id="mechanics" name="mechanics">
+            <option value="Not sure">Not sure, please find out</option>
+            <option value="First come, first served">First come, first served</option>
+            <option value="Wristband or ticket handed out beforehand">Wristband or ticket handed out beforehand</option>
+            <option value="Raffle with registration">Raffle with registration</option>
+            <option value="Appointment or existing client only">Appointment or existing client only</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="notes">Anything else <span class="hint">Second choice, must the buyer be present, shipping address country</span></label>
+          <textarea id="notes" name="notes" placeholder="Happy with the blue dial as a fallback. Shipping to Canada."></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary" id="send">Open the email</button>
+          <button type="button" class="ghost" id="copy">Copy the request instead</button>
+        </div>
+        <p class="formnote" id="status" role="status" aria-live="polite">Goes to brabo.kainoa@gmail.com. Quote back within 24 hours.</p>
+      </form>
+
+      <div class="postfoot">
+        <span>Posted by Kainoa</span>
+        <span class="lab">Labels: booking</span>
+      </div>
+    </article>
+
+  </main>
+
+  <aside>
+    <div class="widget">
+      <h4>About me</h4>
+      <p>Kainoa. I am good at standing still for a long time in a foreign city, and I would rather do that than sit in an office. If you need someone in a line on the other side of the world, that is the job.</p>
+      <p><a href="mailto:brabo.kainoa@gmail.com">brabo.kainoa@gmail.com</a></p>
+    </div>
+
+    <div class="widget">
+      <h4>What I queue for</h4>
+      <ul>
+        <li><span>Watches</span><span class="n">boutique</span></li>
+        <li><span>Sneakers</span><span class="n">drops</span></li>
+        <li><span>Limited runs</span><span class="n">numbered</span></li>
+        <li><span>Launch day</span><span class="n">hardware</span></li>
+        <li><span>Store openings</span><span class="n">first 50</span></li>
+      </ul>
+    </div>
+
+    <div class="widget">
+      <h4>Where I will go</h4>
+      <p>Anywhere I can reach in time, and I pay to get there. The far and awkward ones are the good ones: short queues, less competition, better odds for you.</p>
+      <ul>
+        <li><span>Tokyo</span><span class="n">+9</span></li>
+        <li><span>Geneva</span><span class="n">+1</span></li>
+        <li><span>Paris</span><span class="n">+1</span></li>
+        <li><span>Seoul</span><span class="n">+9</span></li>
+        <li><span>Dubai</span><span class="n">+4</span></li>
+        <li><span>Hong Kong</span><span class="n">+8</span></li>
+        <li><span>New York</span><span class="n">-5</span></li>
+        <li><span>Honolulu</span><span class="n">-10</span></li>
+      </ul>
+    </div>
+
+    <div class="widget">
+      <h4>The short version</h4>
+      <ul>
+        <li><span>Fee up front</span><span class="n">in full</span></li>
+        <li><span>My travel</span><span class="n">on me</span></li>
+        <li><span>Purchase</span><span class="n">not promised</span></li>
+        <li><span>Best notice</span><span class="n">14 days +</span></li>
+        <li><span>Quote in</span><span class="n">24 hrs</span></li>
+      </ul>
+    </div>
+
+    <div class="widget">
+      <h4>Labels</h4>
+      <div class="tags">
+        <span>overview</span><span>process</span><span>terms</span><span>payment</span><span>lead time</span><span>travel</span><span>booking</span>
+      </div>
+    </div>
+
+    <footer class="sitefoot">
+      <p>Queue Duty. Standing in line, on purpose.</p>
+    </footer>
+  </aside>
+
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('booking');
+  var status = document.getElementById('status');
+  var EMAIL = 'brabo.kainoa@gmail.com';
+
+  function val(id) {
+    var el = document.getElementById(id);
+    if (!el) return '';
+    return (el.value || '').trim();
+  }
+
+  function compose() {
+    var item = val('item');
+    var where = val('where');
+    var date = val('date');
+    var time = val('time');
+
+    var subject = 'Queue request' + (item ? ': ' + item : '') + (where ? ' at ' + where : '');
+
+    var lines = [
+      'Name: ' + (val('name') || '(not given)'),
+      'Contact: ' + (val('email') || '(not given)'),
+      '',
+      'Item: ' + (item || '(not given)'),
+      'Store and city: ' + (where || '(not given)'),
+      'Drop date: ' + (date || '(not given)'),
+      'Local drop time: ' + (time || '(not given)'),
+      'How it is sold: ' + val('mechanics'),
+      'Price ceiling: ' + (val('ceiling') || '(not given)'),
+      '',
+      'Notes:',
+      val('notes') || '(none)',
+      '',
+      '--',
+      'Sent from the Queue Duty booking form.',
+      'I understand the fee is payable up front and that a purchase is not guaranteed.'
+    ];
+
+    return { subject: subject, body: lines.join('\n') };
+  }
+
+  function daysUntil() {
+    var d = val('date');
+    if (!d) return null;
+    var parts = d.split('-');
+    if (parts.length !== 3) return null;
+    var target = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+    if (isNaN(target.getTime())) return null;
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return Math.round((target - today) / 86400000);
+  }
+
+  function leadWarning() {
+    var n = daysUntil();
+    if (n === null) return '';
+    if (n < 0) return ' That date is in the past, so check it before you send.';
+    if (n < 5) return ' Heads up: that is under 5 days, so I cannot promise much.';
+    if (n < 14) return ' That is inside 14 days, so odds are reduced but workable.';
+    return ' Good amount of notice, that helps a lot.';
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var m = compose();
+    var href = 'mailto:' + EMAIL +
+      '?subject=' + encodeURIComponent(m.subject) +
+      '&body=' + encodeURIComponent(m.body);
+    window.location.href = href;
+    status.className = 'formnote said';
+    status.textContent = 'Opening your email app.' + leadWarning();
+  });
+
+  document.getElementById('copy').addEventListener('click', function () {
+    var m = compose();
+    var text = 'To: ' + EMAIL + '\nSubject: ' + m.subject + '\n\n' + m.body;
+    function done() {
+      status.className = 'formnote said';
+      status.textContent = 'Copied. Paste it into an email to ' + EMAIL + '.' + leadWarning();
+    }
+    function fail() {
+      status.className = 'formnote';
+      status.textContent = 'Could not copy automatically. Email ' + EMAIL + ' with the item, store, city and date.';
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fail);
+    } else {
+      fail();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
