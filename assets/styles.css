@@ -131,6 +131,14 @@ body {
     top: -1px;
 }
 
+/* The App Store link reads as words, not only a glyph. Matters most in print,
+   where this page becomes a PDF and an 18px icon says nothing. */
+.appstore-label {
+    font-size: 0.85em;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: black;
@@ -255,6 +263,7 @@ body {
     .job, .container { page-break-inside: avoid; break-inside: avoid; }
 
     .appstore-badge { height: 13px !important; margin-left: 5px; top: -1px; }
+    .appstore-label { font-size: 0.8em !important; margin-left: 3px; }
 }
 
 @media (max-width: 600px) {
