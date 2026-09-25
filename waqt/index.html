@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waqt</title>
+  <meta name="description" content="Prayer times you can actually wake up to. Calculated on your device, with no account and no tracking." />
+  <style>
+    :root {
+      --ground: #f4f7f6;
+      --surface: #ffffff;
+      --ink: #101b18;
+      --muted: #566b64;
+      --accent: #0f7a63;
+      --accent-soft: #e6f4f0;
+      --hairline: #e0e8e5;
+      --shadow: 0 1px 2px rgba(16, 27, 24, .04), 0 8px 30px rgba(16, 27, 24, .06);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(15, 122, 99, .10), transparent 70%);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ground: #08120f;
+        --surface: #0f1d19;
+        --ink: #e6efec;
+        --muted: #93a8a1;
+        --accent: #63d3b2;
+        --accent-soft: #102a23;
+        --hairline: rgba(255, 255, 255, .08);
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+        --glow: radial-gradient(60% 80% at 50% 0%, rgba(99, 211, 178, .14), transparent 70%);
+      }
+    }
+    :root[data-theme="dark"] {
+      --ground: #08120f;
+      --surface: #0f1d19;
+      --ink: #e6efec;
+      --muted: #93a8a1;
+      --accent: #63d3b2;
+      --accent-soft: #102a23;
+      --hairline: rgba(255, 255, 255, .08);
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(99, 211, 178, .14), transparent 70%);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    header {
+      background-image: var(--glow);
+      padding: 2.75rem 0 1.75rem;
+      text-align: center;
+    }
+    .mark { display: flex; justify-content: center; margin-bottom: .6rem; }
+    .brand {
+      font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin: 0 0 .35rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 2.7rem); line-height: 1.08;
+      margin: 0 0 .5rem; letter-spacing: -.02em; text-wrap: balance; font-weight: 800;
+    }
+    .lede { color: var(--muted); margin: 0; }
+    .stamp {
+      display: inline-block; margin-top: .4rem; font-size: .85rem;
+      color: var(--muted); background: var(--accent-soft);
+      border-radius: 999px; padding: .15rem .8rem;
+    }
+
+    .summary, .contact {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.6rem;
+      margin: 2.5rem 0 3rem;
+    }
+    .contact { text-align: center; }
+    .summary h2, .contact h2 {
+      margin: 0 0 .5rem; font-size: .8rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+    }
+    .summary ul { margin: .6rem 0 0; padding-left: 1.1rem; }
+    .summary li { margin: .35rem 0; }
+    .contact a { font-size: 1.25rem; font-weight: 700; }
+
+    main { color: var(--ink); }
+    section + section { margin-top: 2rem; }
+    h2.section { font-size: 1.3rem; letter-spacing: -.01em; margin: 0 0 .75rem; font-weight: 700; }
+    h3 { font-size: 1.02rem; margin: 1.3rem 0 .25rem; font-weight: 700; }
+    p { margin: .5rem 0; color: color-mix(in srgb, var(--ink) 88%, var(--muted)); }
+    a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+    .mail a { font-size: 1.1rem; }
+
+    .links { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+    .card {
+      display: block; background: var(--surface); border: 1px solid var(--hairline);
+      border-radius: 16px; box-shadow: var(--shadow); padding: 1.3rem 1.4rem;
+      color: var(--ink); font-weight: 400;
+    }
+    .card:hover { text-decoration: none; border-color: var(--accent); }
+    .card .eyebrow {
+      display: block; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700;
+    }
+    .card .title { display: block; font-size: 1.15rem; font-weight: 700; margin: .2rem 0 .3rem; }
+    .card .desc { margin: 0 0 .6rem; font-size: .96rem; }
+    .card .go { color: var(--accent); font-weight: 600; font-size: .95rem; }
+
+    .rule { height: 1px; background: var(--hairline); border: 0; margin: 3rem 0 0; }
+    footer { padding-top: 1.6rem; color: var(--muted); font-size: .95rem; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      a, .card { transition: color .15s ease, border-color .15s ease; }
+    }
+  </style>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Waqt" />
+  <meta property="og:description" content="Prayer times you can actually wake up to. Calculated on your device, with no account and no tracking." />
+  <meta property="og:url" content="https://kainoabrabo.com/waqt/" />
+  <meta name="twitter:card" content="summary" />
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="mark" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="12" stroke="var(--accent)" stroke-width="2.2" />
+          <path d="M6 19a10 10 0 0 1 20 0" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" />
+          <path d="M16 19V8" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" />
+        </svg>
+      </div>
+      <p class="brand">Waqt</p>
+      <h1>Prayer times you can actually wake up to.</h1>
+      <p class="lede">Calculated on your device. No account, no ads, no tracking.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="summary">
+      <h2>What it does</h2>
+      <ul>
+        <li>The five daily prayers for wherever you are, with your choice of calculation method and madhab.</li>
+        <li>Fajr rings as a real system alarm, through silent mode and Focus, so it actually wakes you.</li>
+        <li>During Ramadan, a suhoor warning before the fast begins and iftar at Maghrib.</li>
+        <li>Everything is computed on your device. There is no account and nothing to sign in to.</li>
+      </ul>
+    </div>
+
+    <nav class="links" aria-label="Waqt pages">
+      <a class="card" href="privacy/">
+        <span class="eyebrow">Legal</span>
+        <span class="title">Privacy Policy</span>
+        <p class="desc">What the app does and does not do with your information.</p>
+        <span class="go">Read the policy &rarr;</span>
+      </a>
+      <a class="card" href="support/">
+        <span class="eyebrow">Help</span>
+        <span class="title">Support</span>
+        <p class="desc">Frequently asked questions and how to reach us with bugs or feedback.</p>
+        <span class="go">Get support &rarr;</span>
+      </a>
+    </nav>
+
+    <hr class="rule" />
+    <footer>
+      <p>Waqt &middot; Questions? <a href="mailto:brabo.kainoa@gmail.com">brabo.kainoa@gmail.com</a></p>
+    </footer>
+  </div>
+</body>
+</html>

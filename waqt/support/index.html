@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waqt Support</title>
+  <meta name="description" content="Frequently asked questions about Waqt, and how to reach us." />
+  <style>
+    :root {
+      --ground: #f4f7f6;
+      --surface: #ffffff;
+      --ink: #101b18;
+      --muted: #566b64;
+      --accent: #0f7a63;
+      --accent-soft: #e6f4f0;
+      --hairline: #e0e8e5;
+      --shadow: 0 1px 2px rgba(16, 27, 24, .04), 0 8px 30px rgba(16, 27, 24, .06);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(15, 122, 99, .10), transparent 70%);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ground: #08120f;
+        --surface: #0f1d19;
+        --ink: #e6efec;
+        --muted: #93a8a1;
+        --accent: #63d3b2;
+        --accent-soft: #102a23;
+        --hairline: rgba(255, 255, 255, .08);
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+        --glow: radial-gradient(60% 80% at 50% 0%, rgba(99, 211, 178, .14), transparent 70%);
+      }
+    }
+    :root[data-theme="dark"] {
+      --ground: #08120f;
+      --surface: #0f1d19;
+      --ink: #e6efec;
+      --muted: #93a8a1;
+      --accent: #63d3b2;
+      --accent-soft: #102a23;
+      --hairline: rgba(255, 255, 255, .08);
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(99, 211, 178, .14), transparent 70%);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    header {
+      background-image: var(--glow);
+      padding: 2.75rem 0 1.75rem;
+      text-align: center;
+    }
+    .mark { display: flex; justify-content: center; margin-bottom: .6rem; }
+    .brand {
+      font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin: 0 0 .35rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 2.7rem); line-height: 1.08;
+      margin: 0 0 .5rem; letter-spacing: -.02em; text-wrap: balance; font-weight: 800;
+    }
+    .lede { color: var(--muted); margin: 0; }
+    .stamp {
+      display: inline-block; margin-top: .4rem; font-size: .85rem;
+      color: var(--muted); background: var(--accent-soft);
+      border-radius: 999px; padding: .15rem .8rem;
+    }
+
+    .summary, .contact {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.6rem;
+      margin: 2.5rem 0 3rem;
+    }
+    .contact { text-align: center; }
+    .summary h2, .contact h2 {
+      margin: 0 0 .5rem; font-size: .8rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+    }
+    .summary ul { margin: .6rem 0 0; padding-left: 1.1rem; }
+    .summary li { margin: .35rem 0; }
+    .contact a { font-size: 1.25rem; font-weight: 700; }
+
+    main { color: var(--ink); }
+    section + section { margin-top: 2rem; }
+    h2.section { font-size: 1.3rem; letter-spacing: -.01em; margin: 0 0 .75rem; font-weight: 700; }
+    h3 { font-size: 1.02rem; margin: 1.3rem 0 .25rem; font-weight: 700; }
+    p { margin: .5rem 0; color: color-mix(in srgb, var(--ink) 88%, var(--muted)); }
+    a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+    .mail a { font-size: 1.1rem; }
+
+    .links { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+    .card {
+      display: block; background: var(--surface); border: 1px solid var(--hairline);
+      border-radius: 16px; box-shadow: var(--shadow); padding: 1.3rem 1.4rem;
+      color: var(--ink); font-weight: 400;
+    }
+    .card:hover { text-decoration: none; border-color: var(--accent); }
+    .card .eyebrow {
+      display: block; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700;
+    }
+    .card .title { display: block; font-size: 1.15rem; font-weight: 700; margin: .2rem 0 .3rem; }
+    .card .desc { margin: 0 0 .6rem; font-size: .96rem; }
+    .card .go { color: var(--accent); font-weight: 600; font-size: .95rem; }
+
+    .rule { height: 1px; background: var(--hairline); border: 0; margin: 3rem 0 0; }
+    footer { padding-top: 1.6rem; color: var(--muted); font-size: .95rem; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      a, .card { transition: color .15s ease, border-color .15s ease; }
+    }
+  </style>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Waqt Support" />
+  <meta property="og:description" content="Frequently asked questions about Waqt, and how to reach us." />
+  <meta property="og:url" content="https://kainoabrabo.com/waqt/support/" />
+  <meta name="twitter:card" content="summary" />
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="brand">Waqt</p>
+      <h1>Support</h1>
+      <p class="lede">Prayer times you can actually wake up to.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="contact">
+      <h2>Contact</h2>
+      <a href="mailto:brabo.kainoa@gmail.com">brabo.kainoa@gmail.com</a>
+      <p>Questions, bugs, or feedback, email anytime and we will get back to you.</p>
+      <p>If a prayer time looks wrong, please include your city, your calculation method, and the time you expected. That is usually enough to find the answer straight away.</p>
+    </div>
+
+    <main>
+      <section>
+        <h2 class="section">Frequently asked</h2>
+
+        <h3>My times are a few minutes off from my mosque.</h3>
+        <p>Almost always this is the calculation method. Different authorities use different sun angles for Fajr and Isha, and the gap between them can be twenty minutes or more. Open Settings and choose the method your community follows: Muslim World League, Umm al-Qura, Egyptian, Karachi, ISNA, and several others are included. If your mosque publishes a timetable that still differs by a minute or two, you can nudge any individual prayer with a per-prayer adjustment.</p>
+
+        <h3>Why is Asr later than I expect?</h3>
+        <p>Asr depends on the juristic school. The Hanafi position puts it appreciably later than the Shafi one. You can switch between them in Settings.</p>
+
+        <h3>My Fajr alarm did not wake me.</h3>
+        <p>On iPhones running iOS 26 or later, Waqt uses the system alarm feature so Fajr rings through silent mode and Focus with a full-screen Stop. Allow the &ldquo;schedule alarms&rdquo; prompt on first launch. On earlier iOS versions the alarm arrives as a notification instead, so make sure notifications are enabled for Waqt in Settings. Also check that the prayer itself is switched on, and that its mode is set to Alarm rather than Notification.</p>
+
+        <h3>How do the Ramadan reminders work?</h3>
+        <p>Suhoor is anchored to Fajr and fires before it by default, because a reminder that the fast has already begun is not much use. Iftar fires at Maghrib. Both can be switched on and off and given their own offsets. If you leave the automatic setting on, they turn themselves on for the month of Ramadan and off again afterwards.</p>
+
+        <h3>Why does Waqt ask for my location?</h3>
+        <p>Prayer times and the qibla are calculated from your latitude and longitude, so the app cannot do its job without them. The calculation happens on your device and your coordinates are never sent to us. See the <a href="/waqt/privacy/">privacy policy</a> for the detail, including the one request that does leave your device.</p>
+
+        <h3>I live at a high latitude and some prayers show no time.</h3>
+        <p>Above roughly 48 degrees the sun does not always dip far enough below the horizon for a true Fajr or Isha, and inside the polar circles a prayer may have no solution at all. Rather than invent a time, Waqt shows none and lets you choose a rule in Settings. Which rule is right is a question for a scholar, not something an app should decide for you.</p>
+
+        <h3>Do you collect any data?</h3>
+        <p>No. There are no accounts, no ads, and no tracking. See the <a href="/waqt/privacy/">privacy policy</a> for details.</p>
+      </section>
+
+      <hr class="rule" />
+      <footer>
+        <p>Waqt &middot; <a href="/waqt/">Home</a> &middot; <a href="/waqt/privacy/">Privacy Policy</a> &middot; <a href="/waqt/support/">Support</a></p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

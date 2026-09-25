@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waqt Privacy Policy</title>
+  <meta name="description" content="What Waqt does and does not do with your information. Prayer times are calculated on your device." />
+  <style>
+    :root {
+      --ground: #f4f7f6;
+      --surface: #ffffff;
+      --ink: #101b18;
+      --muted: #566b64;
+      --accent: #0f7a63;
+      --accent-soft: #e6f4f0;
+      --hairline: #e0e8e5;
+      --shadow: 0 1px 2px rgba(16, 27, 24, .04), 0 8px 30px rgba(16, 27, 24, .06);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(15, 122, 99, .10), transparent 70%);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ground: #08120f;
+        --surface: #0f1d19;
+        --ink: #e6efec;
+        --muted: #93a8a1;
+        --accent: #63d3b2;
+        --accent-soft: #102a23;
+        --hairline: rgba(255, 255, 255, .08);
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+        --glow: radial-gradient(60% 80% at 50% 0%, rgba(99, 211, 178, .14), transparent 70%);
+      }
+    }
+    :root[data-theme="dark"] {
+      --ground: #08120f;
+      --surface: #0f1d19;
+      --ink: #e6efec;
+      --muted: #93a8a1;
+      --accent: #63d3b2;
+      --accent-soft: #102a23;
+      --hairline: rgba(255, 255, 255, .08);
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(99, 211, 178, .14), transparent 70%);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    header {
+      background-image: var(--glow);
+      padding: 2.75rem 0 1.75rem;
+      text-align: center;
+    }
+    .mark { display: flex; justify-content: center; margin-bottom: .6rem; }
+    .brand {
+      font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin: 0 0 .35rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 2.7rem); line-height: 1.08;
+      margin: 0 0 .5rem; letter-spacing: -.02em; text-wrap: balance; font-weight: 800;
+    }
+    .lede { color: var(--muted); margin: 0; }
+    .stamp {
+      display: inline-block; margin-top: .4rem; font-size: .85rem;
+      color: var(--muted); background: var(--accent-soft);
+      border-radius: 999px; padding: .15rem .8rem;
+    }
+
+    .summary, .contact {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.6rem;
+      margin: 2.5rem 0 3rem;
+    }
+    .contact { text-align: center; }
+    .summary h2, .contact h2 {
+      margin: 0 0 .5rem; font-size: .8rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+    }
+    .summary ul { margin: .6rem 0 0; padding-left: 1.1rem; }
+    .summary li { margin: .35rem 0; }
+    .contact a { font-size: 1.25rem; font-weight: 700; }
+
+    main { color: var(--ink); }
+    section + section { margin-top: 2rem; }
+    h2.section { font-size: 1.3rem; letter-spacing: -.01em; margin: 0 0 .75rem; font-weight: 700; }
+    h3 { font-size: 1.02rem; margin: 1.3rem 0 .25rem; font-weight: 700; }
+    p { margin: .5rem 0; color: color-mix(in srgb, var(--ink) 88%, var(--muted)); }
+    a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+    .mail a { font-size: 1.1rem; }
+
+    .links { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+    .card {
+      display: block; background: var(--surface); border: 1px solid var(--hairline);
+      border-radius: 16px; box-shadow: var(--shadow); padding: 1.3rem 1.4rem;
+      color: var(--ink); font-weight: 400;
+    }
+    .card:hover { text-decoration: none; border-color: var(--accent); }
+    .card .eyebrow {
+      display: block; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700;
+    }
+    .card .title { display: block; font-size: 1.15rem; font-weight: 700; margin: .2rem 0 .3rem; }
+    .card .desc { margin: 0 0 .6rem; font-size: .96rem; }
+    .card .go { color: var(--accent); font-weight: 600; font-size: .95rem; }
+
+    .rule { height: 1px; background: var(--hairline); border: 0; margin: 3rem 0 0; }
+    footer { padding-top: 1.6rem; color: var(--muted); font-size: .95rem; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      a, .card { transition: color .15s ease, border-color .15s ease; }
+    }
+  </style>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Waqt Privacy Policy" />
+  <meta property="og:description" content="What Waqt does and does not do with your information. Prayer times are calculated on your device." />
+  <meta property="og:url" content="https://kainoabrabo.com/waqt/privacy/" />
+  <meta name="twitter:card" content="summary" />
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="brand">Waqt</p>
+      <h1>Privacy Policy</h1>
+      <span class="stamp">Effective September 24, 2026</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="summary">
+      <h2>The short version</h2>
+      <ul>
+        <li>There is no account, and we have no server that stores anything about you.</li>
+        <li>No analytics, no advertising, no third-party trackers.</li>
+        <li>Your prayer times are calculated on your device, from your coordinates and the date.</li>
+        <li>Your settings and saved places stay on your device.</li>
+      </ul>
+    </div>
+
+    <main>
+      <p>Waqt (&ldquo;the app&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) shows Islamic prayer times and rings alarms for them. This policy explains what the app does and does not do with your information. In short: Waqt keeps your data on your device, does not require an account, and does not track you.</p>
+
+      <section>
+        <h2 class="section">Information the app uses</h2>
+
+        <h3>Location</h3>
+        <p>With your permission, Waqt uses your device&rsquo;s location for two things: to calculate your prayer times, and to work out the direction of the qibla. Both are pure calculations performed on your device. Your coordinates are not sent to us, and we have no server that could receive them.</p>
+        <p>To show a readable place name (for example, &ldquo;Amman, Jordan&rdquo;) the app asks Apple&rsquo;s geocoding service to convert your coordinates into a city and country. That request goes to Apple, not to us, and is governed by Apple&rsquo;s own privacy policy. If you would rather that request were never made, you can decline location access; the app will then ask you to choose a city by hand instead.</p>
+        <p>You can grant or revoke location access at any time in your device settings.</p>
+
+        <h3>Your settings and saved places</h3>
+        <p>Your calculation method, madhab, per-prayer alarm choices, Ramadan reminders, and any cities you save are stored locally on your device using the operating system&rsquo;s standard on-device storage. This information is not transmitted to us or to any third party. If you delete the app, it is removed with it.</p>
+
+        <h3>Notifications and alarms</h3>
+        <p>Waqt schedules alarms and notifications so they ring at the times you set. On supported devices these are delivered as system alarms, which ring through silent mode and Focus; on others they arrive as local notifications. Scheduling happens entirely on your device. You can manage notification permissions in your device settings.</p>
+
+        <h3>A configuration file</h3>
+        <p>When the app starts it requests a small configuration file from kainoabrabo.com so that pricing can be changed without shipping an update. This request contains no personal information and no location. Like any web request it necessarily reveals your device&rsquo;s IP address and the time of the request to the server hosting the file. We do not use those records to identify or profile anyone. If the request fails, the app carries on normally.</p>
+
+        <h3>Purchases</h3>
+        <p>If the app offers a paid upgrade, purchases are handled entirely by Apple through the App Store. We never see your payment details. The app asks Apple only whether this Apple Account is entitled to the upgrade, and stores the answer on your device.</p>
+      </section>
+
+      <section>
+        <h2 class="section">Information we do not collect</h2>
+        <p>Waqt does not collect names, email addresses, contacts, health data, browsing history, advertising identifiers, or usage analytics. There are no user accounts and no login. We do not sell or share data with anyone, because we do not have any to sell.</p>
+      </section>
+
+      <section>
+        <h2 class="section">Third parties</h2>
+        <p>Waqt integrates no advertising networks and no analytics services. It runs on Apple&rsquo;s operating systems and uses Apple frameworks for alarms, notifications, widgets, geocoding, and purchases; your use of those features is also governed by Apple&rsquo;s privacy policy.</p>
+      </section>
+
+      <section>
+        <h2 class="section">Children</h2>
+        <p>Waqt does not knowingly collect personal information from anyone, including children. The app is suitable for all ages.</p>
+      </section>
+
+      <section>
+        <h2 class="section">Data security</h2>
+        <p>Because your information stays on your device, its security is protected by your device&rsquo;s own protections, such as your passcode and device encryption. We recommend keeping your device software up to date.</p>
+      </section>
+
+      <section>
+        <h2 class="section">Changes to this policy</h2>
+        <p>We may update this policy from time to time. When we do, we will revise the effective date above and post the updated policy at the same location. Continued use of the app after an update means you accept the revised policy.</p>
+      </section>
+
+      <section>
+        <h2 class="section">Contact</h2>
+        <p>If you have questions about this policy or the app&rsquo;s privacy practices, reach us at:</p>
+        <p class="mail"><a href="mailto:brabo.kainoa@gmail.com">brabo.kainoa@gmail.com</a></p>
+      </section>
+
+      <hr class="rule" />
+      <footer>
+        <p>Waqt &middot; <a href="/waqt/">Home</a> &middot; <a href="/waqt/privacy/">Privacy Policy</a> &middot; <a href="/waqt/support/">Support</a></p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
