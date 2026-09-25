@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to use Waimea</title>
+  <meta name="description" content="A short walkthrough of Waimea: adding cities, setting an alarm that belongs to a place, and alarms that follow the sunrise or sunset." />
+  <meta name="theme-color" content="#0a0f1c" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)" />
+  <link rel="canonical" href="https://kainoabrabo.com/waimea/guide/" />
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to use Waimea" />
+  <meta property="og:description" content="Adding cities, setting an alarm that belongs to a place, and alarms that follow the sun." />
+  <meta property="og:url" content="https://kainoabrabo.com/waimea/guide/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="https://kainoabrabo.com/waimea/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Waimea, alarms anchored to the time zone you meant" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f6bed'/%3E%3Cpath d='M16 6a10 10 0 100 20 10 10 0 000-20zm0 2.2a7.8 7.8 0 110 15.6 7.8 7.8 0 010-15.6zM20.5 11.5l-2.1 5.3-5.3 2.1 2.1-5.3z' fill='white'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --ground: #f4f6f9;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #59637a;
+      --accent: #2f6bed;
+      --accent-soft: #eaf1fe;
+      --hairline: #e3e7ee;
+      --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 8px 30px rgba(15, 23, 42, .06);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(47, 107, 237, .10), transparent 70%);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ground: #0a0f1c;
+        --surface: #111a2e;
+        --ink: #e7ecf5;
+        --muted: #9aa7bd;
+        --accent: #6ea0ff;
+        --accent-soft: #16233d;
+        --hairline: rgba(255, 255, 255, .08);
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+        --glow: radial-gradient(60% 80% at 50% 0%, rgba(110, 160, 255, .14), transparent 70%);
+      }
+    }
+    :root[data-theme="dark"] {
+      --ground: #0a0f1c;
+      --surface: #111a2e;
+      --ink: #e7ecf5;
+      --muted: #9aa7bd;
+      --accent: #6ea0ff;
+      --accent-soft: #16233d;
+      --hairline: rgba(255, 255, 255, .08);
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 40px rgba(0, 0, 0, .35);
+      --glow: radial-gradient(60% 80% at 50% 0%, rgba(110, 160, 255, .14), transparent 70%);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    header {
+      background-image: var(--glow);
+      padding: 3.25rem 0 1.5rem;
+      text-align: center;
+    }
+    .mark {
+      width: 52px; height: 52px; margin: 0 auto 1.25rem;
+      display: grid; place-items: center;
+      border-radius: 15px;
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--shadow);
+    }
+    .mark svg { display: block; }
+    .brand {
+      font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin: 0 0 .35rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 2.7rem); line-height: 1.08;
+      margin: 0 0 .6rem; letter-spacing: -.02em; text-wrap: balance; font-weight: 800;
+    }
+    .lede {
+      margin: 0 auto; max-width: 34rem; color: var(--muted); font-size: 1.08rem;
+    }
+
+    .summary {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.6rem;
+      margin: 2.5rem 0 2.5rem;
+    }
+    .summary h2 {
+      margin: 0 0 .9rem; font-size: .8rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700;
+    }
+    .summary ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .7rem; }
+    .summary li { position: relative; padding-left: 1.9rem; }
+    .summary li::before {
+      content: ""; position: absolute; left: 0; top: .58em;
+      width: 12px; height: 12px; border-radius: 4px;
+      background: var(--accent-soft);
+      border: 2px solid var(--accent);
+    }
+
+    .links {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    }
+    @media (max-width: 34rem) { .links { grid-template-columns: 1fr; } }
+    .card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 1.4rem 1.5rem;
+      text-decoration: none; color: inherit; font-weight: inherit;
+    }
+    .card:hover { border-color: var(--accent); text-decoration: none; }
+    .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .card .eyebrow {
+      display: block; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin-bottom: .35rem;
+    }
+    .card .title { font-size: 1.2rem; font-weight: 700; letter-spacing: -.01em; }
+    .card .desc { margin: .35rem 0 0; color: var(--muted); font-size: .96rem; }
+    .card .go { margin-top: .8rem; color: var(--accent); font-weight: 600; font-size: .95rem; }
+
+    a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    .rule { height: 1px; background: var(--hairline); border: 0; margin: 3rem 0 0; }
+    footer { padding-top: 1.6rem; color: var(--muted); font-size: .95rem; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      a, .card { transition: color .15s ease, border-color .15s ease; }
+    }
+
+    /* Guide-specific: a step is a screenshot beside its explanation. */
+    .step {
+      display: grid;
+      grid-template-columns: 15rem 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin: 0 0 3.5rem;
+    }
+    .step:last-of-type { margin-bottom: 1rem; }
+    .step img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 1.1rem;
+      border: 1px solid var(--hairline);
+      box-shadow: var(--shadow);
+      background: var(--surface);
+    }
+    .step .num {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .3rem;
+    }
+    .step h2 {
+      font-size: 1.3rem;
+      letter-spacing: -.01em;
+      margin: 0 0 .6rem;
+    }
+    .step p { margin: 0 0 .8rem; color: var(--muted); }
+    .step p strong { color: var(--ink); font-weight: 650; }
+    .step p:last-child { margin-bottom: 0; }
+
+    /* Screenshots sit above their text once there is no room beside it. */
+    @media (max-width: 40rem) {
+      .step { grid-template-columns: 1fr; gap: 1.1rem; }
+      .step img { max-width: 15rem; margin: 0 auto; }
+    }
+
+    .tips { margin: 0 0 2.5rem; }
+    .tips h2 { font-size: 1.3rem; margin: 0 0 1rem; }
+    .tips dl { margin: 0; display: grid; gap: 1rem; }
+    .tips dt { font-weight: 650; }
+    .tips dd { margin: .15rem 0 0; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="mark" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="12" stroke="var(--accent)" stroke-width="2.2" />
+          <path d="M16 9v7l4.5 2.6" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <p class="brand"><a href="../">Waimea</a></p>
+      <h1>How to use Waimea</h1>
+      <p class="lede">Six screens, in the order you will meet them.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="step">
+      <img src="shots/06-empty.webp" width="560" height="1217" loading="lazy" decoding="async"
+           alt="Waimea on first open: the current city, San Francisco (SFO), with no alarms, and an empty SAVED section reading "No saved locations, tap + to add a city"." />
+      <div>
+        <span class="num">Step 1</span>
+        <h2>Start here</h2>
+        <p>Waimea opens on <strong>the city you are in</strong>, worked out from your location and named for the nearest major city, so San Rafael shows as San Francisco (SFO). Nothing is set up for you and there are no alarms you did not make.</p><p><strong>SAVED</strong> is empty until you fill it. Tap <strong>+</strong> to add your first city.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <img src="shots/04-add.webp" width="560" height="1217" loading="lazy" decoding="async"
+           alt="The Add screen with "San" typed in. Results list San Diego, San Jose, San Antonio, San Salvador, San Jose in Costa Rica, San Juan and Santiago, each with its airport code, its time zone and the current time there." />
+      <div>
+        <span class="num">Step 2</span>
+        <h2>Add the cities you live between</h2>
+        <p>Search by city, and each result shows <strong>what time it is there right now</strong> along with its time zone, so you can tell San Jose in California from San Jose in Costa Rica before you add it.</p><p>Airport codes work too: <strong>SAN</strong>, <strong>SJC</strong>, <strong>SCL</strong>. So do local spellings, in any of the twelve languages the app speaks. Try 東京, Москва or M&uuml;nchen.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <img src="shots/01-home.webp" width="560" height="1217" loading="lazy" decoding="async"
+           alt="The Waimea home screen. San Francisco under CURRENT, then New York, Sydney, London and Bangkok under SAVED, each card showing its local time, the date there and its next alarm with a countdown." />
+      <div>
+        <span class="num">Step 3</span>
+        <h2>Your world at a glance</h2>
+        <p><strong>CURRENT</strong> is wherever you are. <strong>SAVED</strong> is everywhere else that matters to you, each card showing the local time, the date there, and the next alarm with a live countdown.</p><p>The little house marks your home city. The switch on a card <strong>silences that whole city at once</strong>, which is the fast way to mute work alarms for a week without deleting them. Drag the handle on the right to reorder, and the order carries through to your widgets.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <img src="shots/03-edit.webp" width="560" height="1217" loading="lazy" decoding="async"
+           alt="The Edit Alarm sheet with Mode set to Clock, the time 09:30 AM, the label Work, repeating on weekdays, and the Chime sound selected." />
+      <div>
+        <span class="num">Step 4</span>
+        <h2>Set an alarm that belongs to a place</h2>
+        <p>Tap a city, then an alarm. With <strong>Mode: Clock</strong>, 9:30 AM pinned to New York rings at <strong>New York&rsquo;s</strong> 9:30, whether you are in New York, Lisbon or over the Pacific. That is the whole idea of the app.</p><p>Give it a label so the notification says something useful, choose how it repeats, and pick a sound.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <img src="shots/02-solar.webp" width="560" height="1217" loading="lazy" decoding="async"
+           alt="The same Edit Alarm sheet with Mode set to Sunset. Beside the buttons it reads "Today at 6:56 PM", and an offset of one hour can be set Before or After." />
+      <div>
+        <span class="num">Step 5</span>
+        <h2>Or let the sun set the time</h2>
+        <p>Choose <strong>Sunrise</strong> or <strong>Sunset</strong> instead of a clock time and the alarm follows the sun, moving through the year on its own. The line beside the buttons shows what that means today, here <em>Today at 6:56 PM</em>, so it is never abstract.</p><p>Add an offset with <strong>Before</strong> or <strong>After</strong>: an hour before sunset is golden hour, twenty minutes after sunrise is first light. Each city uses its own position, so an alarm pinned to Reykjavik follows Reykjavik&rsquo;s sun.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <img src="shots/05-settings.webp" width="560" height="1217" loading="lazy" decoding="async"
+           alt="The Settings sheet: Dark Mode, 24-Hour Time, Date Format with MM/DD selected, Language set to English, and Report a Bug." />
+      <div>
+        <span class="num">Step 6</span>
+        <h2>Make it yours</h2>
+        <p>The gear holds dark mode, 12 or 24-hour time, date format, and <strong>twelve languages</strong>. Changing the language changes everything, including your alarm labels and the names of the sounds.</p><p><strong>Report a Bug</strong> writes an email with the app&rsquo;s version and a recent log already attached, which is the fastest way to get something fixed.</p>
+      </div>
+    </section>
+
+    <div class="tips">
+      <h2>Worth knowing</h2>
+      <dl>
+        <dt>Your alarms ring wherever you are</dt>
+        <dd>An alarm lives under one city, but it is not silent while you are elsewhere. A San Francisco alarm still rings while you are in Tokyo, at San Francisco&rsquo;s time. That is the point.</dd>
+        <dt>The switch on a city card silences all of its alarms</dt>
+        <dd>Quicker than turning off five alarms one at a time, and nothing is lost when you turn it back on.</dd>
+        <dt>Widgets and the Watch</dt>
+        <dd>Add a Waimea widget to your Home Screen for your next alarm with a live countdown, and clocks for your saved cities. The Apple Watch app shows the same thing on your wrist.</dd>
+        <dt>Nothing leaves your device</dt>
+        <dd>No account, no servers, no tracking. Your location is used only to work out which time zone you are in. See the <a href="../privacy/">privacy policy</a>.</dd>
+      </dl>
+    </div>
+
+    <hr class="rule" />
+    <footer>
+      <p>Still stuck? <a href="../support/">Support</a> &middot; <a href="../changelog/">Changelog</a> &middot; <a href="mailto:brabo.kainoa@gmail.com">brabo.kainoa@gmail.com</a></p>
+    </footer>
+  </main>
+</body>
+</html>
