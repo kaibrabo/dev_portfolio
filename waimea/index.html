@@ -76,6 +76,10 @@
       padding: 3.25rem 0 1.5rem;
       text-align: center;
     }
+    /* The header band sets its own vertical padding, so .wrap must not add the
+       page's 5rem footer gap inside it. Side padding stays: header has none of
+       its own, and without it the title touches the screen edge on a phone. */
+    header > .wrap { padding-block: 0; }
     .mark {
       width: 52px; height: 52px; margin: 0 auto 1.25rem;
       display: grid; place-items: center;
