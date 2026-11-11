@@ -4,103 +4,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kainoa Brabo</title>
+    <title>Kainoa Brabo | Full-stack Software Engineer</title>
+    <meta name="description" content="Kainoa Brabo, full-stack software engineer at iBroadcast building music apps for web, desktop, and TV.">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="canonical" href="https://kainoabrabo.com/">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
-    <link href="./assets/styles.css?v=6" rel="stylesheet" />
+    <!-- Open Graph / social preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kainoa Brabo | Full-stack Software Engineer">
+    <meta property="og:description" content="Full-stack software engineer at iBroadcast building music apps for web, desktop, and TV.">
+    <meta property="og:url" content="https://kainoabrabo.com/">
+    <meta name="twitter:card" content="summary">
+
+    <!-- Inline SVG favicon (KB monogram), no external asset -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f172a'/%3E%3Ctext x='16' y='21.5' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-size='15' font-weight='700' fill='%23fbbf24'%3EKB%3C/text%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="./assets/styles.css?v=7" rel="stylesheet">
+    <script src="./js/main.js" defer></script>
 </head>
 
 <body>
-    <div class="main-container">
-        <div class="title-section">
-            <h2 class="full-name">Kainoa Brabo</h2>
-            <div class="links">
-                <a href="mailto:brabo.kainoa@gmail.com" class="email">brabo.kainoa@gmail.com</a>
-                <a href="https://www.linkedin.com/in/kainoabrabo" class="linkedin">LinkedIn</a>
-                <a href="https://www.github.com/kaibrabo" class="github">Github</a>
+    <a class="skip" href="#content">Skip to content</a>
+    <div class="spotlight" aria-hidden="true"></div>
+
+    <div class="layout">
+        <header class="side">
+            <div>
+                <h1 class="name"><a href="/">Kainoa Brabo</a></h1>
+                <p class="role">Full-stack Software Engineer</p>
+                <p class="tagline">I build music apps for web, desktop, and TV.</p>
+
+                <!-- Print only: plain-text contact line, so the URLs survive on paper and in ATS text extraction. -->
+                <p class="contact-print print-only">kainoabrabo.com &middot; brabo.kainoa@gmail.com &middot; linkedin.com/in/kainoabrabo &middot; github.com/kaibrabo</p>
+
+                <nav class="nav" aria-label="Sections">
+                    <ul>
+                        <li><a href="#about"><span class="nav-line"></span><span>About</span></a></li>
+                        <li><a href="#experience"><span class="nav-line"></span><span>Experience</span></a></li>
+                        <li><a href="#projects"><span class="nav-line"></span><span>Projects</span></a></li>
+                    </ul>
+                </nav>
             </div>
-        </div>
 
-        <div class="about-me-section">
-            <p>
-                &emsp;Full-stack software engineer at iBroadcast, building music apps for web, desktop, and TV. I care about clear, reliable software and sharing what I learn through mentorship.
-            </p>
-        </div>
-
-        <div class="experience-section">
-            <h3 class="title">Experience</h3>
-
-            <div class="job">
-                <p class="employer">iBroadcast</p>
-                <p class="position">Software Engineer, Full-stack Development</p>
-                <p class="info">July 2023 - Present | Remote</p>
-                <ul class="points">
-                    <li class="point">Develop and maintain the web application, shipping features and improving UI performance, reliability, and user experience.</li>
-                    <li class="point">Built the cross-platform Electron desktop app: CD uploading, folder syncing that automatically uploads new music, and full library download for offline listening.</li>
-                    <li class="point">Made desktop uploads resilient and retry-able so large imports resume after the app goes offline, avoiding lost or duplicated tracks.</li>
-                    <li class="point">Develop and maintain the TV apps across tvOS, Android TV, Fire OS, Roku OS, Tizen, and webOS.</li>
-                    <li class="point">Implemented bulk-editing tools to make managing large music libraries faster.</li>
+            <div class="side-bottom">
+                <ul class="socials" aria-label="Contact and profiles">
+                    <li>
+                        <a href="https://www.github.com/kaibrabo" aria-label="GitHub">
+                            <svg viewBox="0 0 16 16" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/kainoabrabo" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:brabo.kainoa@gmail.com" aria-label="Email">
+                            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m3 6 9 7 9-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                        </a>
+                    </li>
                 </ul>
+                <a class="resume-link" href="./Kainoa-Brabo-Resume.pdf">View R&eacute;sum&eacute; <span aria-hidden="true">&#8599;</span></a>
             </div>
+        </header>
 
-            <div class="job">
-                <p class="employer">Zendesk</p>
-                <p class="position">Software Engineer Intern, IT CRM Business Applications</p>
-                <p class="info">June 2018 - November 2018 | San Francisco HQ</p>
-                <ul class="points">
-                    <li class="point">Developed and maintained business applications used by 3,000+ users</li>
-                    <li class="point">Implemented a full software development process from planning to deployment.</li>
-                    <li class="point">Collaborated with cross-functional teams in an agile environment to deliver new
-                        features and improvements.</li>
+        <main id="content">
+            <section id="about" aria-labelledby="about-title">
+                <h2 class="section-title" id="about-title">About</h2>
+                <p>Full-stack software engineer at iBroadcast, building music apps for web, desktop, and TV. I care about clear, reliable software and sharing what I learn through mentorship.</p>
+            </section>
+
+            <section id="experience" aria-labelledby="experience-title">
+                <h2 class="section-title" id="experience-title">Experience</h2>
+                <ol class="cards">
+                    <li class="card">
+                        <p class="card-date">July 2023 - Present<span class="sep"> | </span><span class="card-loc">Remote</span></p>
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="https://www.ibroadcast.com/">iBroadcast</a></h3>
+                            <p class="card-role">Software Engineer, Full-stack Development</p>
+                            <ul class="points">
+                                <li>Develop and maintain the web application, shipping features and improving UI performance, reliability, and user experience.</li>
+                                <li>Built the cross-platform Electron desktop app: CD uploading, folder syncing that automatically uploads new music, and full library download for offline listening.</li>
+                                <li>Made desktop uploads resilient and retry-able so large imports resume after the app goes offline, avoiding lost or duplicated tracks.</li>
+                                <li>Develop and maintain the TV apps across tvOS, Android TV, Fire OS, Roku OS, Tizen, and webOS.</li>
+                                <li>Implemented bulk-editing tools to make managing large music libraries faster.</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <p class="card-date">June 2018 - November 2018<span class="sep"> | </span><span class="card-loc">San Francisco HQ</span></p>
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="https://www.zendesk.com/">Zendesk</a></h3>
+                            <p class="card-role">Software Engineer Intern, IT CRM Business Applications</p>
+                            <ul class="points">
+                                <li>Developed and maintained business applications used by 3,000+ users.</li>
+                                <li>Implemented a full software development process from planning to deployment.</li>
+                                <li>Collaborated with cross-functional teams in an agile environment to deliver new features and improvements.</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="projects" aria-labelledby="projects-title">
+                <h2 class="section-title" id="projects-title">Projects</h2>
+                <ol class="cards">
+                    <li class="card">
+                        <img class="thumb" src="./waimea/og.png" width="1200" height="630" loading="lazy" alt="Waimea, alarms anchored to the time zone you meant">
+                        <div class="card-body">
+                            <h3 class="card-title"><a href="https://kainoabrabo.com/waimea/">Waimea</a> <a class="appstore" href="https://apps.apple.com/app/id6805688588"><svg class="appstore-badge" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34" aria-hidden="true" focusable="false"><rect x="0.5" y="0.5" width="33" height="33" rx="7" fill="#000" stroke="#a6a6a6"/><g transform="translate(6.5,6.5) scale(0.88)" fill="#fff"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.032 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701z"/></g></svg><span class="appstore-label">App Store</span></a></h3>
+                            <p class="card-role">Timezone-anchored alarm &amp; world-clock app</p>
+                            <p class="origin">A side project I built for myself, to handle time differences around work and keep my life in order.</p>
+                            <ul class="points">
+                                <li>Alarms pinned to a place ring at that location's local time, wherever you are.</li>
+                                <li>World clocks, Home Screen widgets, and an Apple Watch app with a live next-alarm countdown.</li>
+                                <li>Built with React Native and native iOS integrations for alarms and widgets, plus an Android widget.</li>
+                            </ul>
+                            <p class="project-links"><a href="https://kainoabrabo.com/waimea/guide/">Guide <span aria-hidden="true">&#8599;</span></a> <a href="https://kainoabrabo.com/waimea/changelog/">Changelog <span aria-hidden="true">&#8599;</span></a></p>
+                            <ul class="tags" aria-label="Technologies">
+                                <li>TypeScript</li>
+                                <li>React Native</li>
+                                <li>Expo</li>
+                                <li>Swift</li>
+                                <li>Kotlin</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="education" aria-labelledby="education-title">
+                <h2 class="section-title" id="education-title">Education</h2>
+                <ol class="cards">
+                    <li class="card">
+                        <p class="card-date">September 2021 - June 2023</p>
+                        <div class="card-body">
+                            <h3 class="card-title">University of California, Santa Cruz</h3>
+                            <p class="card-role">B.S., Computer Science</p>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <p class="card-date">August 2019 - June 2021</p>
+                        <div class="card-body">
+                            <h3 class="card-title">College of Marin, Kentfield</h3>
+                            <p class="card-role">A.S., Physical Science</p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="skills" aria-labelledby="skills-title">
+                <h2 class="section-title" id="skills-title">Skills</h2>
+                <ul class="points skills">
+                    <li><strong>Languages:</strong> Python, JavaScript, C/C++, SQL</li>
+                    <li><strong>Frameworks &amp; Tools:</strong> React, React Native, Expo, Electron, Node.js, GraphQL, MySQL, DynamoDB, AWS, Flask, Serverless</li>
+                    <li><strong>Methodologies:</strong> Agile, Continuous Integration</li>
+                    <li><strong>Spoken:</strong> English native; Spanish and Portuguese limited working</li>
                 </ul>
-            </div>
-        </div>
+            </section>
 
-        <div class="projects-section">
-            <h3 class="title">Projects</h3>
-
-            <div class="job">
-                <p class="employer"><a href="https://kainoabrabo.com/waimea/">Waimea</a> <a class="appstore" href="https://apps.apple.com/app/id6805688588"><svg class="appstore-badge" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34" aria-hidden="true" focusable="false"><rect x="0.5" y="0.5" width="33" height="33" rx="7" fill="#000" stroke="#a6a6a6"/><g transform="translate(6.5,6.5) scale(0.88)" fill="#fff"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.032 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701z"/></g></svg><span class="appstore-label">App Store</span></a></p>
-                <p class="position">Timezone-anchored alarm &amp; world-clock app</p>
-                <ul class="points">
-                    <li class="point">Alarms pinned to a place ring at that location&rsquo;s local time, wherever you are.</li>
-                    <li class="point">World clocks, Home Screen widgets, and an Apple Watch app with a live next-alarm countdown.</li>
-                    <li class="point">Built with React Native and native iOS integrations for alarms and widgets, plus an Android widget.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="education-section">
-            <h3 class="title">Education</h3>
-
-            <div class="container">
-                <p class="school">University of California, Santa Cruz</p>
-                <p class="degree">B.S., Computer Science</p>
-                <p class="dates">September 2021 - June 2023</p>
-            </div>
-
-            <div class="container">
-                <p class="school">College of Marin, Kentfield</p>
-                <p class="degree">A.S., Physical Science</p>
-                <p class="dates">August 2019 - June 2021</p>
-            </div>
-        </div>
-
-        <div class="skills-section">
-            <h3 class="title">Skills</h3>
-
-            <ul class="points">
-                <li class="point">Languages: Python, JavaScript, C/C++, SQL</li>
-                <li class="point">Frameworks &amp; Tools: React, React Native, Expo, Electron, Node.js, GraphQL, MySQL, DynamoDB, AWS, Flask, Serverless</li>
-                <li class="point">Methodologies: Agile, Continuous Integration</li>
-                <li class="point">Spoken: English native; Spanish and Portuguese limited working</li>
-            </ul>
-        </div>
+            <footer class="site-footer">
+                <p>Built by hand with HTML, CSS, and a little JavaScript. Hosted on GitHub Pages.</p>
+            </footer>
+        </main>
     </div>
-
-    <canvas id="breakout-game"></canvas>
-
-    <script src="./js/main.js"></script>
 </body>
 
 </html>

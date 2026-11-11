@@ -1,317 +1,429 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-size: 1.25rem;
-    font-family: "Computer Modern Serif", Tahoma, sans-serif;
-    line-height: 2rem;
+/* Portfolio page. Mobile-first screen styles, wider layouts behind
+   `screen and (min-width)` queries so they never apply when printing,
+   and a separate print block at the end that turns the same HTML into a
+   one-page Letter resume. */
+
+@page {
+    size: letter;
+    margin: 0.5in;
 }
 
-html {
-    width: 100%;
-    height: 100%;
+:root {
+    --bg: #0f172a;
+    --text: #94a3b8;
+    --head: #e2e8f0;
+    --accent: #fbbf24;
+    --tag-bg: rgba(251, 191, 36, 0.1);
+    --card-hover: rgba(30, 41, 59, 0.5);
+    --card-edge: rgba(148, 163, 184, 0.1);
+    --spot: rgba(29, 78, 216, 0.15);
+    --gutter: 1rem;
+    color-scheme: dark;
 }
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
 
 body {
-    width: 100%;
-    height: 100%;
-
-    .main-container {
-        width: 80%;
-        max-width: 1200px;
-        height: 80%;
-        margin: 90px auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        a {
-            text-decoration: none;
-            color: black;
-
-            &:hover {
-                color: #0000EE;
-            }
-        }
-
-        .title-section {
-            display: flex;
-            flex-direction: column;
-
-            .full-name {
-                width: 100%;
-                font-size: 1.6rem;
-            }
-
-            .links {
-                display: flex;
-                justify-content: space-between;
-                width: 50%;
-
-                a {
-                    text-decoration: none;
-                    color: black;
-                    padding-right: 10px;
-
-                    &:hover {
-                        color: #0000EE;
-                    }
-                }
-
-
-
-            }
-        }
-
-        .about-me-section,
-        .experience-section,
-        .projects-section,
-        .education-section,
-        .skills-section {
-            margin-top: 50px;
-
-            .title {
-                font-size: 1.7rem;
-                font-weight: 400;
-            }
-        }
-
-        .experience-section,
-        .projects-section {
-
-            .job {
-                margin: 30px auto 10px;
-                font-size: 1.1rem;
-
-                .info,
-                .position {
-                    font-style: italic;
-                    color: #777777;
-                }
-
-                .points {
-                    padding: 20px;
-                    margin-left: 20px;
-                }
-            }
-        }
-
-        .education-section {
-
-            .container {
-                margin: 25px auto;
-                font-size: 1.1rem;
-
-                .degree,
-                .dates {
-                    font-style: italic;
-                    color: #777777;
-                }
-
-            }
-        }
-
-        .skills-section {
-            padding-bottom: 50px;
-
-            .points {
-                padding: 20px;
-                margin-left: 20px;
-            }
-        }
-    }
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.625;
+    -webkit-font-smoothing: antialiased;
 }
 
-.appstore-badge {
-    height: 18px;
-    width: auto;
-    vertical-align: middle;
+a { color: var(--head); text-decoration: none; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.print-only { display: none; }
+
+.skip {
+    position: absolute;
+    left: var(--gutter);
+    top: -4rem;
+    z-index: 10;
+    padding: 0.5rem 1rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    border-radius: 0.25rem;
+}
+.skip:focus { top: 1rem; color: var(--bg); }
+
+/* Cursor spotlight: a fixed layer whose gradient centre js/main.js moves.
+   Hidden unless the script turns it on (fine pointer, motion allowed). */
+.spotlight {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(600px at var(--x, 50%) var(--y, 50%), var(--spot), transparent 80%);
+}
+.spotlight-on .spotlight { display: block; }
+
+.layout {
+    position: relative;
+    z-index: 1;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 3rem var(--gutter);
+}
+
+/* Left column: name, role, nav, socials */
+.name {
+    margin: 0;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+}
+.name a { color: var(--head); }
+
+.role {
+    margin: 0.75rem 0 0;
+    color: var(--head);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.tagline {
+    margin: 1rem 0 0;
+    max-width: 20rem;
+    line-height: 1.5;
+}
+
+.nav { display: none; }
+.nav ul { list-style: none; margin: 0; padding: 0; width: max-content; }
+.nav a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    color: var(--text);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.nav-line {
     display: inline-block;
-    margin-left: 6px;
+    width: 2rem;
+    height: 1px;
+    margin-right: 1rem;
+    background: currentColor;
+    transition: width 0.15s ease, background-color 0.15s ease;
+}
+.nav a:hover,
+.nav a:focus-visible,
+.nav a.active { color: var(--head); }
+.nav a:hover .nav-line,
+.nav a:focus-visible .nav-line,
+.nav a.active .nav-line { width: 4rem; background: var(--head); }
+
+.socials {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 2rem 0 0;
+    padding: 0;
+}
+.socials a { display: block; color: var(--text); }
+.socials a:hover { color: var(--head); }
+.socials svg { display: block; width: 24px; height: 24px; }
+
+.resume-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-weight: 600;
+}
+
+/* Right column: sections */
+main { padding-top: 4rem; }
+
+section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 4rem;
+}
+
+.section-title {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin: 0 calc(var(--gutter) * -1) 1rem;
+    padding: 1.25rem var(--gutter);
+    background: rgba(15, 23, 42, 0.75);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: var(--head);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+#about p { margin: 0 0 1rem; }
+
+.cards { list-style: none; margin: 0; padding: 0; }
+
+.card {
+    position: relative;
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    transition: opacity 0.15s ease;
+}
+.card:last-child { margin-bottom: 0; }
+/* Hover surface sits behind the content, wider than the card itself. */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -1rem;
+    z-index: 0;
+    border-radius: 0.375rem;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.card > * { position: relative; z-index: 1; }
+
+.card-date {
+    margin: 0;
+    padding-top: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+.card-date .sep { display: none; }
+.card-loc { display: block; font-weight: 500; text-transform: none; letter-spacing: 0; }
+
+.card-title {
+    margin: 0;
+    color: var(--head);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.card-role { margin: 0; }
+
+.origin { margin: 0.5rem 0 0; color: var(--head); }
+
+.points {
+    margin: 0.5rem 0 0;
+    padding-left: 1.1rem;
+    list-style: disc;
+    font-size: 0.9375rem;
+}
+.points li { margin: 0.375rem 0 0; }
+.skills { margin-top: 0; }
+.skills strong { color: var(--head); font-weight: 600; }
+
+.project-links { margin: 0.75rem 0 0; display: flex; gap: 1.25rem; font-size: 0.875rem; font-weight: 600; }
+
+.tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin: 1rem 0 0;
+    padding: 0;
+}
+.tags li {
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: var(--tag-bg);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+}
+
+.thumb {
+    order: 2;
+    display: block;
+    width: 100%;
+    max-width: 12rem;
+    height: auto;
+    border: 2px solid rgba(226, 232, 240, 0.1);
+    border-radius: 0.25rem;
+}
+
+/* App Store link: the label reads as words, not only a glyph. */
+.appstore { margin-left: 0.25rem; white-space: nowrap; font-weight: 500; }
+.appstore-badge {
+    width: auto;
+    height: 18px;
+    vertical-align: middle;
     position: relative;
     top: -1px;
 }
+.appstore-label { margin-left: 4px; font-size: 0.85em; vertical-align: middle; }
 
-/* The App Store link reads as words, not only a glyph. Matters most in print,
-   where this page becomes a PDF and an 18px icon says nothing. */
-.appstore-label {
-    font-size: 0.85em;
-    vertical-align: middle;
-    margin-left: 4px;
+.site-footer { max-width: 28rem; padding-bottom: 3rem; font-size: 0.875rem; }
+.site-footer p { margin: 0; }
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+    :root { --gutter: 3rem; }
+    .layout { padding-top: 5rem; padding-bottom: 5rem; }
+    .name { font-size: 3rem; }
+    .role { font-size: 1.25rem; }
+    section { margin-bottom: 6rem; }
+    .card { grid-template-columns: 8rem 1fr; gap: 1rem 2rem; }
+    .thumb { order: 0; margin-top: 0.25rem; }
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: black;
-        color: white;
+/* Desktop: sticky left column, scrolling right column */
+@media screen and (min-width: 1024px) {
+    :root { --gutter: 6rem; }
+    .layout {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .side {
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 48%;
+        max-height: 100vh;
+        padding: 6rem 0;
+    }
+    main { width: 52%; padding: 6rem 0 0; }
+    section { margin-bottom: 9rem; scroll-margin-top: 6rem; }
+    .nav { display: block; margin-top: 4rem; }
 
-        a {
-            color: white !important;
-
-            &:hover {
-                color: #3f3fdf !important;
-            }
-        }
-
-        .experience-section,
-        .projects-section {
-
-            .job {
-
-                .position, .info {
-                    color: #999999 !important;
-                }
-            }
-        }
-
-        .education-section {
-
-            .container {
-
-                .degree, .dates {
-                    color: #999999 !important;
-                }
-            }
-        }
+    /* The left nav names each section, so the headings are for screen readers only. */
+    .section-title {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
     }
 
+    /* Card highlight: hovering or focusing inside a list dims the other cards. */
+    .card:hover::before,
+    .card:focus-within::before {
+        background: var(--card-hover);
+        box-shadow: inset 0 1px 0 0 var(--card-edge);
+    }
+    .cards:hover .card,
+    .cards:focus-within .card { opacity: 0.5; }
+    .cards .card:hover,
+    .cards .card:focus-within { opacity: 1; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .nav-line,
+    .card,
+    .card::before { transition: none; }
+}
+
+/* Print / Save as PDF: a one-page Letter resume from the same HTML.
+   Only the base (mobile) screen styles reach here, since the wider layouts
+   are screen-only, so this block undoes those and nothing else. */
 @media print {
-    /* Print/PDF: a clean, recruiter-ready one-page layout. Screen styles above
-       are unaffected; everything here only applies to print / Save-as-PDF. */
-    @page { size: letter; margin: 0.55in 0.62in; }
+    /* Light color-scheme, or Chrome paints the page margins with the dark canvas. */
+    :root { --text: #222; --head: #000; color-scheme: light; background: #fff; }
 
-    body { background: #fff !important; color: #111 !important; }
-    body a { color: #111 !important; text-decoration: none !important; }
-    #breakout-game { display: none !important; }
-
-    /* Base rhythm */
-    * { font-size: 10.4px !important; line-height: 1.34 !important; }
-
-    .main-container {
-        width: 100% !important;
-        max-width: none !important;
-        height: auto !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        display: block !important;
-    }
-
-    /* Header: name + a single muted contact line with dot separators */
-    .title-section { margin-bottom: 4px !important; }
-    .full-name {
-        font-size: 22px !important;
-        font-weight: 700 !important;
-        letter-spacing: .3px;
-        margin: 0 0 2px !important;
-    }
-    .title-section .links {
-        display: block !important;
-        width: 100% !important;
-    }
-    .title-section .links a {
-        display: inline !important;
-        padding: 0 !important;
-        color: #555 !important;
-    }
-    .title-section .links a:not(:last-child)::after {
-        content: "   \00b7   ";
-        color: #aaa;
-    }
-
-    /* Section headers with a hairline rule for scannability */
-    .title {
-        font-size: 11px !important;
-        font-weight: 700 !important;
-        text-transform: uppercase;
-        letter-spacing: 1.3px;
-        border-bottom: 1px solid #bbb;
-        padding-bottom: 2px !important;
-        margin: 0 0 6px !important;
-    }
-    .about-me-section { margin-top: 9px !important; }
-    .experience-section,
-    .projects-section,
-    .education-section,
-    .skills-section { margin-top: 13px !important; }
-
-    .about-me-section p + p { margin-top: 4px !important; }
-
-    /* Entries: bold title, italic subtitle, dates pulled to the right */
-    .experience-section .job,
-    .projects-section .job { margin: 0 0 9px !important; position: relative; }
-    .education-section .container { margin: 0 0 8px !important; position: relative; }
-
-    .employer, .school { font-weight: 700 !important; font-size: 11px !important; }
-    .position, .degree { font-style: italic !important; color: #333 !important; }
-    .info, .dates { color: #555 !important; }
-
-    .experience-section .job > .info,
-    .education-section .container > .dates {
-        position: absolute !important;
-        top: 0 !important;
-        right: 0 !important;
-        margin: 0 !important;
-        font-style: normal !important;
-        color: #555 !important;
-    }
-
-    /* Bullets: tight and evenly spaced */
-    .points { padding: 3px 0 0 15px !important; margin: 2px 0 0 0 !important; }
-    .point { margin: 0 0 1px !important; }
-
-    .job, .container { page-break-inside: avoid; break-inside: avoid; }
-
-    .appstore-badge { height: 13px !important; margin-left: 5px; top: -1px; }
-    .appstore-label { font-size: 0.8em !important; margin-left: 3px; }
-}
-
-@media (max-width: 600px) {
-    * {
-        font-size: medium;
-    }
-
+    /* Sizes in px: 1px = 1/96in in print, so 13.3px is 10pt body text. */
     body {
-
-        h2 {
-            font-size: 24px !important;
-        }
-
-        h3 {
-            font-size: 20px !important;
-        }
-
-        .main-container {
-            margin: 50px auto;
-        }
-
-        .about-me-section {
-            text-align: justify;
-        }
-
-        .experience-section {
-
-            .job {
-                margin: 10px auto 5px !important;
-            }
-        }
-
-        .links {
-            flex-direction: column;
-        }
-
-        .education-section {
-
-            .container {
-                margin: 10px auto 0 !important;
-            }
-        }
-
-        .about-me-section,
-        .experience-section,
-        .education-section,
-        .skills-section {
-            margin-top: 20px !important;
-        }
+        background: #fff;
+        color: #222;
+        font-size: 13.3px;
+        line-height: 1.3;
     }
+    a { color: inherit; }
+
+    .skip,
+    .spotlight,
+    .tagline,
+    .nav,
+    .side-bottom,
+    .thumb,
+    .tags,
+    .project-links,
+    .appstore-badge,
+    .site-footer { display: none !important; }
+    .print-only { display: block; }
+
+    .layout { display: block; max-width: none; padding: 0; }
+    main { padding: 0; }
+
+    .name { font-size: 28px; letter-spacing: 0.01em; }
+    .role { margin: 2px 0 0; font-size: 15px; font-weight: 600; }
+    .contact-print { margin: 3px 0 0; color: #444; }
+
+    section { margin: 13px 0 0; }
+    #about p { margin: 0; }
+
+    .section-title {
+        position: static;
+        margin: 0 0 6px;
+        padding: 0 0 2px;
+        background: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        border-bottom: 1px solid #999;
+        font-size: 13.3px;
+        letter-spacing: 0.12em;
+    }
+
+    /* Grid, not absolute positioning: positioned boxes paint after normal
+       flow, which reorders the PDF's text and scrambles ATS extraction.
+       .card-body's children join the grid so the date sits on the title row. */
+    .card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0 1rem;
+        margin: 0 0 8px;
+        break-inside: avoid;
+    }
+    /* z-index on a grid item also paints it out of order, so reset both. */
+    .card,
+    .card > * { position: static; z-index: auto; }
+    .card::before { display: none; }
+    .card-body { display: contents; }
+    .card-body > * { grid-column: 1 / -1; }
+    .card-body > .card-title { grid-column: 1; grid-row: 1; }
+
+    .card-date {
+        grid-column: 2;
+        grid-row: 1;
+        padding: 0;
+        color: #444;
+        font-size: 12.5px;
+        font-weight: 400;
+        letter-spacing: 0;
+        text-transform: none;
+        text-align: right;
+    }
+    .card-date .sep,
+    .card-loc { display: inline; font-weight: 400; }
+
+    .card-title { font-size: 14px; font-weight: 700; }
+    .card-role { font-style: italic; color: #333; }
+    .origin { margin: 1px 0 0; color: #222; }
+
+    .points { margin: 2px 0 0; padding-left: 16px; font-size: 13.3px; }
+    .points li { margin: 0 0 1px; }
+    .skills strong { color: #000; }
+
+    .appstore { margin-left: 4px; font-weight: 400; }
+    .appstore-label { margin-left: 0; font-size: 0.85em; color: #444; }
 }
