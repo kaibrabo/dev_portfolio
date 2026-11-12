@@ -166,10 +166,34 @@
 
     <article class="release">
       <div class="release-head">
-        <h2>1.3.0</h2>
+        <h2>1.3.1</h2>
         <span class="tag">Coming soon</span>
       </div>
-      <p class="date">In testing</p>
+      <p class="date">In review</p>
+
+      <h3>Added</h3>
+      <ul>
+        <li>A Lock Screen widget. It shows your next alarm, the time it rings and how long until it does (&ldquo;2h 54m&rdquo;), in all three Lock Screen sizes, and moves on to the following alarm once one rings. Needs iOS 26.5 or later.</li>
+      </ul>
+
+      <h3>Fixed</h3>
+      <ul>
+        <li>After a flight, the widget could keep showing the place you left until you opened Waimea. It now looks up where you are itself (iOS asks once whether the widget may use your location) and never shows a place from another time zone.</li>
+        <li>The widget now refreshes every 15 minutes or so, as often as iOS allows, instead of every few hours.</li>
+      </ul>
+
+      <h3>Changed</h3>
+      <ul>
+        <li>A ringing alarm now says the time it was set for, so you can tell two apart at a glance: &ldquo;Wake - 9:00 AM (SFO) 11/11/26&rdquo; instead of &ldquo;Wake (SFO) 11/11/26&rdquo;.</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <div class="release-head">
+        <h2>1.3.0</h2>
+        <span class="tag">Latest</span>
+      </div>
+      <p class="date">Released 5 November 2026</p>
 
       <h3>Added</h3>
       <ul>
@@ -192,7 +216,6 @@
     <article class="release">
       <div class="release-head">
         <h2>1.2.0</h2>
-        <span class="tag">Latest</span>
       </div>
       <p class="date">Released 10 October 2026</p>
 
