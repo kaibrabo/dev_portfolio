@@ -25,6 +25,7 @@ Served at kainoabrabo.com (`CNAME`) via GitHub Pages.
 - Stylesheet is cache-busted by query string (`styles.css?v=N`); bump N when changing it.
 - `waimea/`, `waqt/`: public pages for the iOS apps. Each page is self-contained (inline `<style>`, inline SVG favicon, light/dark via CSS variables on `:root` with `prefers-color-scheme` and `data-theme`). They share nothing with `assets/styles.css`.
 - Root `main.js` is an unused stub.
+- `tailored/` (git-ignored, never published): job-specific resumes. Each is a copy of `index.html` with paths pointed at `../assets/` and `../js/`, edited for one posting, then exported the same way to `tailored/Kainoa-Brabo-Resume-<Company>.pdf` from `http://localhost:8000/tailored/<company>.html`. Keep each to one page.
 
 ## Coupling with the app repos (read before moving or renaming anything)
 - `waimea/config.json` and `waqt/config.json` are read at app launch by `../../waimea/src/lib/iap.ts` and `../../waqt/src/lib/iap.ts`. Shape: `{"offer": "sub" | "off", "founderMaxBuild": <number>}`. `off` hides the paywall and unlocks Pro. Changing this file changes live app behavior.
