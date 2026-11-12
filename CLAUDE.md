@@ -11,7 +11,7 @@ Served at kainoabrabo.com (`CNAME`) via GitHub Pages.
 
 ## Commands
 - Preview locally: `python3 -m http.server 8000` from the repo root (also the `portfolio` entry in `.claude/launch.json`), then open http://localhost:8000/ (root-relative links like `/waimea/guide/` need the repo root as server root).
-- Re-export the resume PDF (with the server running), then check it is still one page:
+- Re-export the resume PDF (with the server running), then check it is still one page. If the server is down, Chrome fails silently and leaves the old PDF in place, so confirm the file's modified time changed:
   `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --no-pdf-header-footer --virtual-time-budget=5000 --print-to-pdf=Kainoa-Brabo-Resume.pdf http://localhost:8000/`
 - Deploy: push to `main`; GitHub Pages publishes it. There is no other step.
 
