@@ -138,10 +138,11 @@ a:hover { color: var(--accent); }
 }
 
 /* Right column: sections */
-main { padding-top: 4rem; }
+/* Phone spacing is tighter; the tablet query restores the roomier values. */
+main { padding-top: 2.5rem; }
 
 section {
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
     scroll-margin-top: 4rem;
 }
 
@@ -149,8 +150,8 @@ section {
     position: sticky;
     top: 0;
     z-index: 2;
-    margin: 0 calc(var(--gutter) * -1) 1rem;
-    padding: 1.25rem var(--gutter);
+    margin: 0 calc(var(--gutter) * -1) 0.5rem;
+    padding: 0.75rem var(--gutter);
     background: rgba(15, 23, 42, 0.75);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
@@ -169,7 +170,7 @@ section {
     position: relative;
     display: grid;
     gap: 0.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     transition: opacity 0.15s ease;
 }
 .card:last-child { margin-bottom: 0; }
@@ -268,8 +269,10 @@ section {
     .layout { padding-top: 5rem; padding-bottom: 5rem; }
     .name { font-size: 3rem; }
     .role { font-size: 1.25rem; }
+    main { padding-top: 4rem; }
     section { margin-bottom: 6rem; }
-    .card { grid-template-columns: 8rem 1fr; gap: 1rem 2rem; }
+    .section-title { margin-bottom: 1rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+    .card { grid-template-columns: 8rem 1fr; gap: 1rem 2rem; margin-bottom: 3rem; }
     .thumb { order: 0; margin-top: 0.25rem; }
 }
 
