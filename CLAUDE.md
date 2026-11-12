@@ -20,7 +20,7 @@ Served at kainoabrabo.com (`CNAME`) via GitHub Pages.
   - Screen: dark two-column layout. Mobile-first base styles; wider layouts sit in `@media screen and (min-width: ...)` so they never apply in print.
   - Print: the `@media print` block plus `@page` turn the same HTML into a one-page Letter resume (10pt body, white, single column). Elements only for print use `.print-only` (the plain-text contact line).
 - Print gotchas: keep `color-scheme: light` in print (else Chrome paints dark page margins), and don't use absolute positioning or `z-index` on resume content in print. Positioned boxes paint out of DOM order, which scrambles the PDF's extracted text for ATS parsers. Cards use a grid with `.card-body { display: contents }` instead.
-- `Kainoa-Brabo-Resume.pdf` (linked as "view CV") is generated from the print layout with the command above. After any content change to `index.html`, re-export it, or it goes stale.
+- `Kainoa-Brabo-Resume.pdf` (linked as "view CV") is generated from the print layout with the command above. After any content change to `index.html`, re-export it, or it goes stale. Then bump the `?v=N` on the "view CV" link in `index.html`, since GitHub Pages lets browsers cache the PDF for 10 minutes.
 - `js/main.js`: screen-only extras (nav highlight via `IntersectionObserver`, cursor spotlight gated on `pointer: fine` and `prefers-reduced-motion: no-preference`). The page must work without it.
 - Stylesheet is cache-busted by query string (`styles.css?v=N`); bump N when changing it.
 - `waimea/`, `waqt/`: public pages for the iOS apps. Each page is self-contained (inline `<style>`, inline SVG favicon, light/dark via CSS variables on `:root` with `prefers-color-scheme` and `data-theme`). They share nothing with `assets/styles.css`.
