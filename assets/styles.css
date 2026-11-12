@@ -92,12 +92,6 @@ a:hover { color: var(--accent); }
     line-height: 1.4;
 }
 
-.tagline {
-    margin: 1rem 0 0;
-    max-width: 20rem;
-    line-height: 1.5;
-}
-
 .nav { display: none; }
 .nav ul { list-style: none; margin: 0; padding: 0; width: max-content; }
 .nav a {
@@ -352,7 +346,6 @@ section {
 
     .skip,
     .spotlight,
-    .tagline,
     .nav,
     .side-bottom,
     .thumb,
